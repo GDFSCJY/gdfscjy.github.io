@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="括号匹配IDE中通常有括号匹配功能来检测语法错误。例如有下列程序： 12345678910#include&lt;stdio.h&gt;int main &amp;#123;    int a &#x3D; 123;    if (a &gt; 100) &amp;#123;        if (a &gt; 10000) &amp;#123;            printf(&quot;It is more than 10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="括号匹配">
+<meta property="og:url" content="http://example.com/2022/05/22/%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D/index.html">
+<meta property="og:site_name" content="Toshihiko Homepage">
+<meta property="og:description" content="括号匹配IDE中通常有括号匹配功能来检测语法错误。例如有下列程序： 12345678910#include&lt;stdio.h&gt;int main &amp;#123;    int a &#x3D; 123;    if (a &gt; 100) &amp;#123;        if (a &gt; 10000) &amp;#123;            printf(&quot;It is more than 10">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-21T17:01:59.000Z">
+<meta property="article:modified_time" content="2022-05-21T17:01:59.000Z">
+<meta property="article:author" content="Toshihiko">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/22/%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/05/22/%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D/","path":"2022/05/22/括号匹配/","title":"括号匹配"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>括号匹配 | Toshihiko Homepage</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Toshihiko Homepage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">括号匹配</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Toshihiko</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/22/%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Toshihiko">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toshihiko Homepage">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="括号匹配 | Toshihiko Homepage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          括号匹配
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-05-22 01:01:59" itemprop="dateCreated datePublished" datetime="2022-05-22T01:01:59+08:00">2022-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="括号匹配"><a href="#括号匹配" class="headerlink" title="括号匹配"></a>括号匹配</h1><p>IDE中通常有括号匹配功能来检测语法错误。<br>例如有下列程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> main &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a &gt; <span class="number">10000</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;It is more than 10000!\n&quot;</span>)</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到程序里的括号都是成双成对出现的，且含有一定的规律。<br>若把除了括号以外的字符去掉，则获得下列字符串：<br><code>&#123;()&#123;()&#123;()&#125;&#125;&#125;</code></p>
+<p>这样的字符串有一个规律，从左到右扫描，后扫描到的左括号接下来会先扫描到对应的右括号。<br>这种规律称作“后进先出”（Last In First Out）。</p>
+<p>栈结构能够实现这种“后进先出”的操作，也就是说可以使用栈结构来判断括号是否匹配。</p>
+<p>括号不匹配有下列情况：</p>
+<ol>
+<li>右括号缺失。例如<code>(()</code>。</li>
+<li>左括号缺失。例如<code>())</code>。</li>
+<li>种类不匹配。例如<code>(]</code>。</li>
+</ol>
+<p>分析如何使用栈结构对括号字符串。以上面的字符串<code>&#123;()&#123;()&#123;()&#125;&#125;&#125;</code>为例。</p>
+<ol>
+<li>扫描到第1个字符<code>&#123;</code>，计算机希望和<code>&#125;</code>匹配。（入栈<code>&#123;</code>）</li>
+<li>扫描到第2个字符<code>(</code>，计算机把<code>&#125;</code>放一边，希望和<code>)</code>匹配。（入栈<code>(</code>）</li>
+<li>扫描到第3个字符<code>)</code>，计算机匹配成功，希望和<code>&#125;</code>匹配。（出栈<code>(</code>）</li>
+<li>扫描到第4个字符<code>&#123;</code>，计算机把<code>&#125;</code>放在一边，希望和<code>&#125;</code>匹配。（入栈<code>&#123;</code>）</li>
+<li>扫描到第5个字符<code>(</code>，计算机把<code>&#125;</code>放在一边，希望和<code>)</code>匹配。（入栈<code>(</code>）</li>
+<li>扫描到第6个字符<code>)</code>，计算机匹配成功，希望和<code>&#125;</code>匹配。（出栈<code>(</code>）</li>
+<li>扫描到第7个字符<code>&#123;</code>，计算机把<code>&#125;</code>放在一边，希望和<code>&#125;</code>匹配。（入栈<code>&#123;</code>）</li>
+<li>扫描到第8个字符<code>(</code>，计算机把<code>&#125;</code>放在一边，希望和<code>)</code>匹配。（入栈<code>(</code>）</li>
+<li>扫描到第9个字符<code>)</code>，计算机匹配成功，希望和<code>&#125;</code>匹配。（出栈<code>(</code>）</li>
+<li>扫描到第10个字符<code>&#125;</code>，计算机匹配成功，希望和<code>&#125;</code>匹配。（出栈<code>&#123;</code>）</li>
+<li>扫描到第11个字符<code>&#125;</code>，计算机匹配成功，希望和<code>&#125;</code>匹配。（出栈<code>&#123;</code>）</li>
+<li>扫描到第12个字符<code>&#125;</code>，计算机匹配成功（出栈<code>&#123;</code>）</li>
+<li>扫描结束，此时栈正好也为空。</li>
+</ol>
+<p>通过分析，程序可能抛出下列错误：</p>
+<ol>
+<li>程序扫描到的右括号和希望匹配到的种类不一样，例如扫描到<code>&#125;</code>，希望匹配的是<code>]</code>，那么可以抛出种类不匹配异常。</li>
+<li>程序扫描到右括号，栈却是空的，那么可以抛出左括号缺失异常。</li>
+<li>程序扫描结束，栈仍有没被匹配的，那么可以抛出右括号缺失异常。</li>
+</ol>
+<p>程序的执行流程如下：</p>
+<pre class="mermaid">graph LR
+    开始-->A{"还有未扫描括号？"}--Y-->扫描下一个括号-->B{"左括号？"}--Y-->入栈-->A
+    B--N-->C{"栈空？"}--N-->出栈-->D{"是否匹配？"}--Y-->A
+    C--"Y(左括号缺失)"-->失败-->Z(结束)
+    D--"N(种类不匹配)"-->失败
+    A--N-->E{"栈空？"}--Y-->成功-->Z
+    E--"N(右括号缺失)"-->失败</pre>
+
+<p>程序如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ElemType char  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个链结点结构，用来实现链栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span>  </span><br><span class="line">    ElemType value;  </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">next</span>;</span>  </span><br><span class="line">&#125; Node, *Stack;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化链栈方法</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">initStack</span><span class="params">(Stack *head)</span> &#123;  </span><br><span class="line">    (*head) = (Node *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  </span><br><span class="line">    <span class="keyword">if</span> ((*head) == <span class="literal">NULL</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    (*head)-&gt;next = <span class="literal">NULL</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 压栈方法</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">pushStack</span><span class="params">(Stack head, ElemType elem)</span> &#123;  </span><br><span class="line">    Node *new_node;  </span><br><span class="line">    new_node = (Node *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  </span><br><span class="line">    <span class="keyword">if</span> (new_node == <span class="literal">NULL</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    new_node-&gt;value = elem;  </span><br><span class="line">    new_node-&gt;next = head-&gt;next;  </span><br><span class="line">    head-&gt;next = new_node;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 出栈方法</span></span><br><span class="line"><span class="type">char</span> <span class="title function_">popStack</span><span class="params">(Stack head)</span> &#123;  </span><br><span class="line">    Node *pop_node;  </span><br><span class="line">    <span class="type">char</span> c;  </span><br><span class="line">    <span class="keyword">if</span> (head-&gt;next == <span class="literal">NULL</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;\0&#x27;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    pop_node = head-&gt;next;  </span><br><span class="line">    c = pop_node-&gt;value;  </span><br><span class="line">    head-&gt;next = pop_node-&gt;next;  </span><br><span class="line">    <span class="built_in">free</span>(pop_node);  </span><br><span class="line">    <span class="keyword">return</span> c;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断栈空方法</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">isEmpty</span><span class="params">(Stack head)</span> &#123;  </span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">NULL</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">if</span> (head-&gt;next == <span class="literal">NULL</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;  </span><br><span class="line">    <span class="comment">// 初始化栈</span></span><br><span class="line">    Stack <span class="built_in">stack</span>;  </span><br><span class="line">    initStack(&amp;<span class="built_in">stack</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入括号字符串</span></span><br><span class="line">    <span class="type">char</span> <span class="built_in">string</span>[<span class="number">128</span>];  </span><br><span class="line">    gets(<span class="built_in">string</span>);  </span><br><span class="line">    <span class="type">int</span> string_length = <span class="built_in">strlen</span>(<span class="built_in">string</span>);  </span><br><span class="line">  </span><br><span class="line">    <span class="type">char</span> c;  </span><br><span class="line">    <span class="type">char</span> t;  </span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;  </span><br><span class="line">    <span class="comment">// 循环跳出条件是：是否还有未处理括号</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; string_length) &#123;  </span><br><span class="line">        <span class="comment">// 扫描下一个括号  </span></span><br><span class="line">        c = <span class="built_in">string</span>[i++];  </span><br><span class="line">        <span class="comment">// 判断左括号  </span></span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">&#x27;(&#x27;</span> || c == <span class="string">&#x27;[&#x27;</span> || c == <span class="string">&#x27;&#123;&#x27;</span>) &#123; </span><br><span class="line">            <span class="comment">// 压栈 </span></span><br><span class="line">            pushStack(<span class="built_in">stack</span>, c);  </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;)&#x27;</span> || c == <span class="string">&#x27;]&#x27;</span> || c == <span class="string">&#x27;&#125;&#x27;</span>) &#123;  </span><br><span class="line">            <span class="comment">// 判断栈空</span></span><br><span class="line">            <span class="keyword">if</span> (isEmpty(<span class="built_in">stack</span>)) &#123;  </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Left Missing Error\n&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;  </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                <span class="comment">// 出栈</span></span><br><span class="line">                t = popStack(<span class="built_in">stack</span>);  </span><br><span class="line">                <span class="comment">// 判断种类</span></span><br><span class="line">                <span class="keyword">if</span> (!((c == <span class="string">&#x27;)&#x27;</span> &amp;&amp; t == <span class="string">&#x27;(&#x27;</span>)  </span><br><span class="line">                      || (c == <span class="string">&#x27;&#125;&#x27;</span> &amp;&amp; t == <span class="string">&#x27;&#123;&#x27;</span>)  </span><br><span class="line">                      || (c == <span class="string">&#x27;]&#x27;</span> &amp;&amp; t == <span class="string">&#x27;[&#x27;</span>))) &#123;  </span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;Not match Error\n&quot;</span>);  </span><br><span class="line">                    <span class="keyword">return</span> <span class="number">-1</span>;  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">// 判断栈空</span></span><br><span class="line">    <span class="keyword">if</span> (isEmpty(<span class="built_in">stack</span>)) &#123;  </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;OK&quot;</span>);  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Right Missing Error\n&quot;</span>);  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/21/KMP%E7%AE%97%E6%B3%95/" rel="prev" title="KMP算法">
+                  <i class="fa fa-chevron-left"></i> KMP算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Toshihiko</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.0.1/mermaid.min.js","integrity":"sha256-CemUs9ITT7liCZpVMktcEw0BpAOZ1+mujlMB3UyuImU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

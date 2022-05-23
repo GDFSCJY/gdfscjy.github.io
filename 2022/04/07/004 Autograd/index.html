@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Autograd训练神经网络最常用的算法是反向传播， 即根据误差（损失）的梯度对模型的参数进行调整。 PyTorch提供自动求导功能。 12import torchimport matplotlib.pyplot as plt  Simple Maths求$f(x)&#x3D;x^3-2x^2+5x-1$在$x&#x3D;[-2, -1, 0, 1, 2]$上的导数（梯度） 123456x &#x3D; torch.tenso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="004 Autograd">
+<meta property="og:url" content="http://example.com/2022/04/07/004%20Autograd/index.html">
+<meta property="og:site_name" content="Toshihiko Homepage">
+<meta property="og:description" content="Autograd训练神经网络最常用的算法是反向传播， 即根据误差（损失）的梯度对模型的参数进行调整。 PyTorch提供自动求导功能。 12import torchimport matplotlib.pyplot as plt  Simple Maths求$f(x)&#x3D;x^3-2x^2+5x-1$在$x&#x3D;[-2, -1, 0, 1, 2]$上的导数（梯度） 123456x &#x3D; torch.tenso">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-07T09:43:34.000Z">
+<meta property="article:modified_time" content="2022-04-07T09:43:34.000Z">
+<meta property="article:author" content="Toshihiko">
+<meta property="article:tag" content="DeepLearning">
+<meta property="article:tag" content="PyTorch">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/04/07/004%20Autograd/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/04/07/004%20Autograd/","path":"2022/04/07/004 Autograd/","title":"004 Autograd"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>004 Autograd | Toshihiko Homepage</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Toshihiko Homepage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Autograd"><span class="nav-number">1.</span> <span class="nav-text">Autograd</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Maths"><span class="nav-number">1.1.</span> <span class="nav-text">Simple Maths</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-layer-Model"><span class="nav-number">1.2.</span> <span class="nav-text">One-layer Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disabling-Gradient-Tracking"><span class="nav-number">1.3.</span> <span class="nav-text">Disabling Gradient Tracking</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Toshihiko</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/07/004%20Autograd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Toshihiko">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toshihiko Homepage">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="004 Autograd | Toshihiko Homepage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          004 Autograd
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-07 17:43:34" itemprop="dateCreated datePublished" datetime="2022-04-07T17:43:34+08:00">2022-04-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Autograd"><a href="#Autograd" class="headerlink" title="Autograd"></a>Autograd</h1><p>训练神经网络最常用的算法是<strong>反向传播</strong>， 即根据误差（损失）的<strong>梯度</strong>对模型的参数进行调整。</p>
+<p>PyTorch提供自动求导功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import matplotlib.pyplot as plt</span><br></pre></td></tr></table></figure>
+
+<h2 id="Simple-Maths"><a href="#Simple-Maths" class="headerlink" title="Simple Maths"></a>Simple Maths</h2><p>求$f(x)=x^3-2x^2+5x-1$在$x=[-2, -1, 0, 1, 2]$上的导数（梯度）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([-<span class="number">2</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], dtype=torch.<span class="built_in">float</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = x**<span class="number">3</span>-<span class="number">2</span>*(x**<span class="number">2</span>)+<span class="number">5</span>*x-<span class="number">1</span></span><br><span class="line">out = torch.<span class="built_in">sum</span>(y)</span><br><span class="line">out.backward()</span><br><span class="line">x_grad = x.grad</span><br><span class="line"><span class="built_in">print</span>(x_grad)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>tensor([25., 12.,  5.,  4.,  9.])</p>
+</blockquote>
+<p>使用matplotlib画出$f(x)$在$x=[-2, 0, 2]$的切线图像<br>$k_i = f’(x_i)$<br>$b_i = f(x_i) - k_ix_i$<br>切线方程：$y = k_ix + b_i$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x_range = torch.linspace(-<span class="number">5</span>, <span class="number">5</span>, <span class="number">100</span>)</span><br><span class="line">y_curve = x_range**<span class="number">3</span>-<span class="number">2</span>*(x_range**<span class="number">2</span>)+<span class="number">5</span>*x_range-<span class="number">1</span></span><br><span class="line">b = (y - x_grad * x).detach()</span><br><span class="line">plt.plot(</span><br><span class="line">    x_range, y_curve, <span class="string">&#x27;-&#x27;</span>, </span><br><span class="line">    x_range, x_range * x_grad[<span class="number">0</span>] + b[<span class="number">0</span>], <span class="string">&#x27;--&#x27;</span>, </span><br><span class="line">    x_range, x_range * x_grad[<span class="number">2</span>] + b[<span class="number">2</span>], <span class="string">&#x27;--&#x27;</span>, </span><br><span class="line">    x_range, x_range * x_grad[<span class="number">4</span>] + b[<span class="number">4</span>], <span class="string">&#x27;--&#x27;</span>, </span><br><span class="line">)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>输出：<br>![[Figure_1.svg]]]</p>
+<h2 id="One-layer-Model"><a href="#One-layer-Model" class="headerlink" title="One-layer Model"></a>One-layer Model</h2><p>构造一个只有一个隐藏层的神经网络模型，包含一个权重参数<code>weight</code>和偏置参数<code>bias</code>；<br>同时有输入<code>inputs</code>、目标<code>target</code>和损失函数<code>torch.nn.functional.binary_cross_entropy_with_logits</code>。</p>
+<p>因为目的是调整<code>weight</code>和<code>bias</code>，所以只需要对<code>weight</code>和<code>bias</code>求导，即$\frac{\partial loss}{\partial weight}$ 和$\frac{\partial loss}{\partial bias}$。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">inputs = torch.ones(<span class="number">5</span>)</span><br><span class="line">target = torch.zeros(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">weight = torch.randn(<span class="number">5</span>, <span class="number">3</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">bias = torch.randn(<span class="number">3</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">preds = torch.matmul(inputs, weight) + bias</span><br><span class="line">loss = torch.nn.functional.binary_cross_entropy_with_logits(preds, target)</span><br></pre></td></tr></table></figure>
+
+<p>在tensors计算过程中会产生一个图，这个计算图由一个个<code>Function</code>类的对象构成，这些对象能表示前驱的函数，也能据此在反向传播期间计算导数。<br>这个<code>Function</code>存放在tensors的<code>grad_fn</code>属性里。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Preds function: <span class="subst">&#123;preds.grad_fn&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Loss function: <span class="subst">&#123;loss.grad_fn&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>Preds function: &lt;AddBackward0 object at 0x0000000001439F88&gt;<br>Loss function: &lt;BinaryCrossEntropyWithLogitsBackward0 object at 0x0000000001439F88&gt;`</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss.backward()</span><br><span class="line"><span class="built_in">print</span>(weight.grad)</span><br><span class="line"><span class="built_in">print</span>(bias.grad)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>tensor([[0.3101, 0.0663, 0.0708],<br>        [0.3101, 0.0663, 0.0708],<br>        [0.3101, 0.0663, 0.0708],<br>        [0.3101, 0.0663, 0.0708],<br>        [0.3101, 0.0663, 0.0708]])<br>    tensor([0.3101, 0.0663, 0.0708])</p>
+</blockquote>
+<h2 id="Disabling-Gradient-Tracking"><a href="#Disabling-Gradient-Tracking" class="headerlink" title="Disabling Gradient Tracking"></a>Disabling Gradient Tracking</h2><p>有的时候并不需要用到梯度计算，例如验证网络模型，或者把网络模型的输出应用到其他数据上，而且关闭梯度计算可以加快运算速度。<br>有以下方式可以关闭梯度计算：</p>
+<ol>
+<li><p>使用<code>torch.no_grad()</code>代码块<br>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">out1 = torh.matmul(inputs, weight) + bias</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    out2 = torh.matmul(inputs, weight) + bias</span><br><span class="line"></span><br><span class="line">out3 = torh.matmul(inputs, weight) + bias</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(out1.requires_grad, out2.requires_grad, out3.requires_grad)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>True False True</p>
+</blockquote>
+</li>
+<li><p>使用<code>torch.set_grad_enabled()</code><br>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">out1 = torh.matmul(inputs, weight) + bias</span><br><span class="line"></span><br><span class="line">torch.set_grad_enabled(<span class="literal">False</span>)</span><br><span class="line">out2 = torh.matmul(inputs, weight) + bias</span><br><span class="line"></span><br><span class="line">torch.set_grad_enabled(<span class="literal">True</span>)</span><br><span class="line">out3 = torh.matmul(inputs, weight) + bias</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(out1.requires_grad, out2.requires_grad, out3.requires_grad)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>True False True</p>
+</blockquote>
+</li>
+</ol>
+<p>有些时候要把带有梯度信息的tensors用来作其他运算，但又不需要这个tensors的梯度信息，则可以使用<code>detach()</code>。<br>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">out1 = torh.matmul(inputs, weight) + bias</span><br><span class="line"></span><br><span class="line">out2 = out1.detach()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(out1, out2)</span><br><span class="line"><span class="built_in">print</span>(out1.requires_grad, out2.requires_grad)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DeepLearning/" rel="tag"># DeepLearning</a>
+              <a href="/tags/PyTorch/" rel="tag"># PyTorch</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/05/003%20Model/" rel="prev" title="003 Model">
+                  <i class="fa fa-chevron-left"></i> 003 Model
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/07/Install%20Python/" rel="next" title="Install Python">
+                  Install Python <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Toshihiko</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.0.1/mermaid.min.js","integrity":"sha256-CemUs9ITT7liCZpVMktcEw0BpAOZ1+mujlMB3UyuImU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
