@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本科课程软件测试笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件测试">
+<meta property="og:url" content="http://example.com/2022/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="TSHK blog">
+<meta property="og:description" content="本科课程软件测试笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-15T06:22:17.000Z">
+<meta property="article:modified_time" content="2023-08-14T03:26:04.220Z">
+<meta property="article:author" content="Toshihiko Chen">
+<meta property="article:tag" content="课程笔记">
+<meta property="article:tag" content="软件测试">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/","path":"2022/课程笔记/软件测试/","title":"软件测试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件测试 | TSHK blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TSHK blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">第一章 软件测试概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E5%AE%9A%E4%B9%89-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">1.1.</span> <span class="nav-text">软件测试的定义 ※※※</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.</span> <span class="nav-text">软件测试的对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B6%89%E5%8F%8A%E7%9A%84%E5%85%B3%E9%94%AE%E9%97%AE%E9%A2%98%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%96%B9%E9%9D%A2-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">1.3.</span> <span class="nav-text">软件测试涉及的关键问题的四个方面 ※※※</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E5%88%86%E7%B1%BB-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">1.4.</span> <span class="nav-text">软件测试的分类 ※※※</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E5%8C%85%E5%90%AB%E5%85%83%E7%B4%A0"><span class="nav-number">1.5.</span> <span class="nav-text">设计文档包含元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3%E5%8C%85%E5%90%AB%E5%85%83%E7%B4%A0"><span class="nav-number">1.6.</span> <span class="nav-text">设计测试文档包含元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.</span> <span class="nav-text">软件开发模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.8.</span> <span class="nav-text">软件测试模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5%E4%B8%8E%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">第二章 软件测试策略与过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">软件测试策略的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E5%85%85%E5%88%86%E6%80%A7%E4%BA%94%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">软件测试充分性五原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%B5%8B%E8%AF%95"><span class="nav-number">2.3.</span> <span class="nav-text">静态测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="nav-number">2.3.2.</span> <span class="nav-text">静态结构分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E5%BA%A6%E9%87%8F-%E2%80%BB%E2%80%BB"><span class="nav-number">2.3.3.</span> <span class="nav-text">代码质量度量 ※※</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%B5%8B%E8%AF%95%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="nav-number">2.3.4.</span> <span class="nav-text">静态测试的任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%B5%8B%E8%AF%95"><span class="nav-number">2.4.</span> <span class="nav-text">动态测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">2.5.</span> <span class="nav-text">软件测试过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">2.5.1.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95"><span class="nav-number">2.5.2.</span> <span class="nav-text">集成测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95"><span class="nav-number">2.5.3.</span> <span class="nav-text">回归测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E6%B5%8B%E8%AF%95"><span class="nav-number">2.5.4.</span> <span class="nav-text">确认测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95"><span class="nav-number">2.5.5.</span> <span class="nav-text">系统测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">3.</span> <span class="nav-text">第三章 黑盒测试 ※※※</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86%E6%B3%95-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">3.1.</span> <span class="nav-text">等价类划分法 ※※※</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%AD%A5%E9%AA%A4-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">3.1.1.</span> <span class="nav-text">设计测试用例步骤 ※※※</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E5%88%92%E5%88%86%E7%9A%84%E4%BE%9D%E6%8D%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">等价划分的依据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%80%BC%E5%88%86%E6%9E%90%E6%B3%95-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">3.2.</span> <span class="nav-text">边界值分析法 ※※※</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.2.1.</span> <span class="nav-text">步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E5%9B%BE%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">因果图法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F"><span class="nav-number">3.3.2.</span> <span class="nav-text">约束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E8%A1%A8%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">决策表法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">4.</span> <span class="nav-text">第四章 白盒测试 ※※※</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%88%99"><span class="nav-number">4.1.</span> <span class="nav-text">原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BE-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">4.2.</span> <span class="nav-text">控制流图 ※※※</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%BD%A2%E5%A4%8D%E6%9D%82%E5%BA%A6-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">4.2.1.</span> <span class="nav-text">环形复杂度 ※※※</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%86%E7%9B%96%E6%B5%8B%E8%AF%95-%E2%80%BB%E2%80%BB%E2%80%BB"><span class="nav-number">4.3.</span> <span class="nav-text">覆盖测试 ※※※</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%A6%86%E7%9B%96%E6%B3%95"><span class="nav-number">4.3.1.</span> <span class="nav-text">逻辑覆盖法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E6%B5%8B%E8%AF%95"><span class="nav-number">4.4.</span> <span class="nav-text">路径测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">4.4.1.</span> <span class="nav-text">路径表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%B7%AF%E5%BE%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-number">4.4.2.</span> <span class="nav-text">基本路径测试方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4-2"><span class="nav-number">4.4.2.1.</span> <span class="nav-text">步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E6%B5%8B%E8%AF%95"><span class="nav-number">4.5.</span> <span class="nav-text">循环测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%91%E7%94%A8%E4%BE%8B%E6%B5%8B%E8%AF%95"><span class="nav-number">4.6.</span> <span class="nav-text">最少用例测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BD%AF%E4%BB%B6%E7%89%B9%E5%AE%9A%E7%8E%AF%E5%A2%83%E5%8F%8A%E5%BA%94%E7%94%A8%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95"><span class="nav-number">5.</span> <span class="nav-text">第五章 软件特定环境及应用系统测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web%E6%B5%8B%E8%AF%95"><span class="nav-number">5.1.</span> <span class="nav-text">Web测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AF%E8%AF%AD"><span class="nav-number">5.1.1.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-number">5.1.2.</span> <span class="nav-text">评价指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="nav-number">5.2.</span> <span class="nav-text">面向对象软件测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E7%89%B9%E7%82%B9"><span class="nav-number">5.2.1.</span> <span class="nav-text">面向对象软件特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5"><span class="nav-number">5.2.2.</span> <span class="nav-text">面向对象软件测试策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="nav-number">5.3.</span> <span class="nav-text">移动端软件测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E9%A2%98%E4%B9%8B%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">大题之黑盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB%E6%B5%8B%E8%AF%95"><span class="nav-number">6.1.</span> <span class="nav-text">等价类测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E9%97%AE%E9%A2%98"><span class="nav-number">6.1.1.</span> <span class="nav-text">三角形问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NextDate%E5%87%BD%E6%95%B0"><span class="nav-number">6.1.2.</span> <span class="nav-text">NextDate函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%80%BC%E5%88%86%E6%9E%90%E6%B3%95"><span class="nav-number">6.2.</span> <span class="nav-text">边界值分析法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0"><span class="nav-number">6.2.1.</span> <span class="nav-text">二元函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NextDate%E5%87%BD%E6%95%B0-1"><span class="nav-number">6.2.2.</span> <span class="nav-text">NextDate函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E9%A2%98%E4%B9%8B%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">7.</span> <span class="nav-text">大题之白盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%A6%86%E7%9B%96%E6%B3%95-1"><span class="nav-number">7.1.</span> <span class="nav-text">逻辑覆盖法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DoWork"><span class="nav-number">7.1.1.</span> <span class="nav-text">DoWork</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Toshihiko Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Toshihiko Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TSHK blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件测试 | TSHK blog">
+      <meta itemprop="description" content="本科课程软件测试笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-15 14:22:17" itemprop="dateCreated datePublished" datetime="2022-05-15T14:22:17+08:00">2022-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>21 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">本科课程软件测试笔记</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第一章-软件测试概述"><a href="#第一章-软件测试概述" class="headerlink" title="第一章 软件测试概述"></a>第一章 软件测试概述</h1><h2 id="软件测试的定义-※※※"><a href="#软件测试的定义-※※※" class="headerlink" title="软件测试的定义 ※※※"></a>软件测试的定义 ※※※</h2><p>软件测试是<strong>为了发现错误而执行程序的过程</strong>。</p>
+<p>测试是某个系统或组成的部分将<strong>在特定的条件下运行，结果将被观察和记录，</strong><br><strong>并对系统或组成的部分进行评价</strong>。</p>
+<p>测试用例是为特定的目标而设计的一组<strong>测试输入</strong>、<strong>执行条件</strong>和<strong>预期的输入</strong>。</p>
+<h2 id="软件测试的对象"><a href="#软件测试的对象" class="headerlink" title="软件测试的对象"></a>软件测试的对象</h2><p>需求规格说明、概要设计规格说明、详细设计规格说明和源程序</p>
+<h2 id="软件测试涉及的关键问题的四个方面-※※※"><a href="#软件测试涉及的关键问题的四个方面-※※※" class="headerlink" title="软件测试涉及的关键问题的四个方面 ※※※"></a>软件测试涉及的关键问题的四个方面 ※※※</h2><ul>
+<li>测试由谁来执行（who）</li>
+<li>测试什么（what）</li>
+<li>什么时候进行测试（when）</li>
+<li>怎样进行测试（how）</li>
+</ul>
+<h2 id="软件测试的分类-※※※"><a href="#软件测试的分类-※※※" class="headerlink" title="软件测试的分类 ※※※"></a>软件测试的分类 ※※※</h2><p>根据测试用例的设计方法：</p>
+<ul>
+<li>黑盒测试</li>
+<li>白盒测试</li>
+</ul>
+<p>根据测试的策略和过程：</p>
+<ul>
+<li>单元测试</li>
+<li>集成测试</li>
+<li>系统测试</li>
+<li>验证测试</li>
+</ul>
+<h2 id="设计文档包含元素"><a href="#设计文档包含元素" class="headerlink" title="设计文档包含元素"></a>设计文档包含元素</h2><ul>
+<li>架构：产生描述软件整体设计的文档</li>
+<li>数据流示意图：表示数据在程序中如何流动的正规示意图</li>
+<li>状态变化示意图：将软件分解为基本状态或者条件的另一种正规示意图</li>
+<li>流程图：用图形描述程序逻辑的最常用方式之一</li>
+<li>注释代码</li>
+</ul>
+<h2 id="设计测试文档包含元素"><a href="#设计测试文档包含元素" class="headerlink" title="设计测试文档包含元素"></a>设计测试文档包含元素</h2><ul>
+<li>测试计划：用于验证软件是否符合产品说明书和客户需求的整体方案</li>
+<li>测试用例：依据测试的项目，并描述验证软件的详细步骤</li>
+<li>软件测试报告：描述依据测试用例找出的问题</li>
+<li>归纳、统计和总结：采用图表、表格和报告等形式描述整个测试过程</li>
+</ul>
+<h2 id="软件开发模式"><a href="#软件开发模式" class="headerlink" title="软件开发模式"></a>软件开发模式</h2><ul>
+<li>大棒开发法<br>  单纯用大量人力物力放在一起<br>  优点：思路简单<br>  缺点：非工程化，随意性大</li>
+<li>边写边改法<br>  有粗糙的想法就开始简单设计，然后进行较长的反复编写、测试和修复<br>  优点：迅速展示成果，适合快速制作，用完就扔的项目<br>  缺点：编码和测试可能是长期的循环往复的过程</li>
+<li>瀑布法<br>  将软件生命周期的各项活动，规定为按照固定顺序相连的若干个阶段性工作<br>  优点：易于理解；强调早期计划及需求调查<br>  缺点：不能适应需求变化；不能反映出软件开发过程的反复与迭代性</li>
+<li>快速原型法<br>  根据客户需求在较短的时间内解决用户最迫切解决的问题，完成可演示的产品。</li>
+<li>螺旋模式法<br>  螺旋模式法是瀑布模式和边写边改演化模式相结合，并加入风险评估机制<br>  优点：严格的全过程风险管理；强调各开发阶段的质量；提供机会评估项目是否<br>  有价值继续下去</li>
+<li>敏捷开发<br>  包含最少的流程和文档，减少正式性。目的是做眼前能做的事情。<br>  4个特征：增量的、协作的、直接的、适应性强的</li>
+</ul>
+<h2 id="软件测试模型"><a href="#软件测试模型" class="headerlink" title="软件测试模型"></a>软件测试模型</h2><p><strong>V模型</strong>，<strong>W模型</strong>，X模型，H模型</p>
+<ul>
+<li><p>V模型<br>  过程从左到右，描述了基本的开发过程和测试行为<br>  局限性：把测试作为编码之后的最后一个活动，需求分析等前期产生的错误直到<br>后期的验收测试才能发现<br>%%</p>
+<pre class="mermaid">graph LR
+  A["需求分析"]-->B["概要设计"]-->C["详细设计"]-->D["编码"]-->E["单元测试"]-->F["集成测试"]-->G["系统测试"]-->H["验收测试"]
+  A---H
+  B---G
+  C---F
+  D---E</pre>
+<p>%%</p>
+</li>
+<li><p>W模型<br>  强调测试伴随整个软件开发周期，需求、功能和设计同样要测试<br>  测试与开发是同步进行的</p>
+</li>
+</ul>
+<p>%%</p>
+<pre class="mermaid">graph LR
+    A["需求分析"]-->B["概要设计"]-->C["详细设计"]-->D["编码实现"]-->E["模块集成"]-->F["系统构建"]-->G["系统安装"]
+    A-.-G
+    B-.-F
+    C-.-E
+
+    A1("需求测试")-->B1("概要设计测试")-->C1("详细设计测试")-->D1("单元测试")-->E1("集成测试")-->F1("系统测试")-->G1("验收测试")
+    A1-.-G1
+    B1-.-F1
+    C1-.-E1
+
+    A---A1
+    B---B1
+    C---C1
+    D---D1
+    E---E1
+    F---F1
+    G---G1</pre>
+<p>%%</p>
+<h1 id="第二章-软件测试策略与过程"><a href="#第二章-软件测试策略与过程" class="headerlink" title="第二章 软件测试策略与过程"></a>第二章 软件测试策略与过程</h1><h2 id="软件测试策略的定义"><a href="#软件测试策略的定义" class="headerlink" title="软件测试策略的定义"></a>软件测试策略的定义</h2><p>把特定的测试用法放置进去的一系列步骤</p>
+<h2 id="软件测试充分性五原则"><a href="#软件测试充分性五原则" class="headerlink" title="软件测试充分性五原则"></a>软件测试充分性五原则</h2><ul>
+<li>单调性：如果一个软件系统在一个测试数据集合上的测试是充分的，那么再多测试一些数据也应该是充分的</li>
+<li>非复合性：即使对软件所有成分都进行充分的测试，也不表明整个软件的测试已经充分了</li>
+<li>非分解性：即使对软件系统整体的测试是充分的，也不意味着软件系统中各个成分都已经充分测试</li>
+<li>复杂性：软件越复杂，需要的测试数据就越多</li>
+<li>回报递减率：测试得越多，进一步测试所能得到的充分性增长就越少</li>
+</ul>
+<h2 id="静态测试"><a href="#静态测试" class="headerlink" title="静态测试"></a>静态测试</h2><p>静态方法常称为“分析”，是对被测程序进行特征分析方法的总成。</p>
+<p>静态测试不实际运行软件，主要对软件的编程格式、结构等方面进行评估。</p>
+<p>静态测试包括<strong>代码检查</strong>、<strong>静态结构分析</strong>、<strong>代码质量度量</strong>等。</p>
+<h3 id="代码检查"><a href="#代码检查" class="headerlink" title="代码检查"></a>代码检查</h3><p>包括代码走查、桌面检查、代码审查等，具体内容：变量检查、命名和类型检查、程序逻辑审查、程序语法检查和程序结构检查等<br>优点：代码检查比动态测试更有效率<br>缺点：非常耗费时间</p>
+<h3 id="静态结构分析"><a href="#静态结构分析" class="headerlink" title="静态结构分析"></a>静态结构分析</h3><p>以图形的方式表现程序的内部结构</p>
+<h3 id="代码质量度量-※※"><a href="#代码质量度量-※※" class="headerlink" title="代码质量度量 ※※"></a>代码质量度量 ※※</h3><p>软件质量包括六个方面：<br>功能性、可靠性、易用性、效率、可维护性、可移植性</p>
+<p>三种度量参数：Line复杂度、Halstead复杂度和McCabe复杂度</p>
+<ul>
+<li>Line复杂度<br>  以代码的行数为计算的基准</li>
+<li>Halstead复杂度<br>  以程序中使用到的运算符与运算元数量作为计数目标，然后可以计算出程序容量、工作量等</li>
+<li>McCabe复杂度（圈复杂度）<br>  将软件的流程图转化为有向图，然后以图论来衡量软件的质量</li>
+</ul>
+<p>%%</p>
+<h3 id="静态测试的任务"><a href="#静态测试的任务" class="headerlink" title="静态测试的任务"></a>静态测试的任务</h3><ol>
+<li>检查算法的逻辑正确性</li>
+<li>检查模块接口的正确性</li>
+<li>检查输入参数是否有合法性检查</li>
+<li>检查调用其他模块的接口是否正确</li>
+<li>检查是否设置了适当的出错处理</li>
+<li>检查表达式、语句是否正确，是否含有二义性</li>
+<li>检查常量或全局变量使用是否正确</li>
+<li>检查标识符的使用是否规范、一致</li>
+<li>检查程序风格的一致性、规范性</li>
+<li>检查代码是否可以优化，算法效率是否最高</li>
+<li>检查代码注释是否完整，是否正确反映代码的功能<br>%%</li>
+</ol>
+<h2 id="动态测试"><a href="#动态测试" class="headerlink" title="动态测试"></a>动态测试</h2><p>黑盒测试一种从用户观点出发的测试，用来确认软件功能的正确性和可操作性。<br>白盒测试一般用来分析程序的内部结构。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>黑盒测试</th>
+<th>白盒测试</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>规划方面</td>
+<td>功能测试</td>
+<td>结构测试</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>能从用户的角度出发测试</td>
+<td>能对程序特定部位进行覆盖测试</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>无法测试特定部位</td>
+<td>无法检查程序外部特性</td>
+</tr>
+<tr>
+<td>应用范围</td>
+<td>边界分析法；等价类分析法；决策表测试</td>
+<td>语句覆盖；判定覆盖；条件覆盖；判定&#x2F;条件覆盖；路径覆盖；循环覆盖；模块接口覆盖</td>
+</tr>
+</tbody></table>
+<h2 id="软件测试过程"><a href="#软件测试过程" class="headerlink" title="软件测试过程"></a>软件测试过程</h2><pre class="mermaid">graph LR
+    A["单元测试"]-->B["集成测试"]-->C["确认测试"]-->D["系统测试"]-->E["验收测试"]</pre>
+
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>主要任务：<br>接口模块、局部数据结构、边界条件、独立路径和错误处理</p>
+<p>边界条件测试项目：</p>
+<ul>
+<li>循环的第0次、1次、n次</li>
+<li>运算或判断中取最大值、最小值</li>
+<li>数据流、控制流中刚等于、大于、小于的比较值</li>
+</ul>
+<h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><ul>
+<li>非增量式测试<br>  采用一步到位的方法来构造测试，对所有模块分别进行单元测试后，按照程序结构图<br>  将各模块连接起来，把连接后的程序当作一个整体进行测试<br>  缺点：当一次集成的模块较多时，测试容易出现混乱</li>
+<li>增量式测试<br>  逐次将未曾集成测试的模块和已经集成的模块结合成程序包，再将这些模块集成为较大系统<br>  增量式集成测试又分三种不同方法:<ul>
+<li>自顶向下增量式测试：首先集成主控模块，然后依照控制层次结构向下进行集成</li>
+<li>自底向上增量式测试：从程序模块结构的最底层模块开始集成和测试</li>
+<li>混合增量测试：把自顶向下增量式测试和自底向上增量式测试结合起来</li>
+</ul>
+</li>
+</ul>
+<h3 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h3><p>用来保证改动不会带来不可预料的行为或另外的错误</p>
+<h3 id="确认测试"><a href="#确认测试" class="headerlink" title="确认测试"></a>确认测试</h3><p>检验所开发的软件是否能按用户提出的要求进行。</p>
+<h3 id="系统测试"><a href="#系统测试" class="headerlink" title="系统测试"></a>系统测试</h3><p>包括恢复测试、安全测试、强度测试、性能测试、正确性测试、可靠性测试、<br>兼容性测试、Web网站测试</p>
+<h1 id="第三章-黑盒测试-※※※"><a href="#第三章-黑盒测试-※※※" class="headerlink" title="第三章 黑盒测试 ※※※"></a>第三章 黑盒测试 ※※※</h1><p>测试用例是为特定的目标而设计的一组<strong>测试输入</strong>、<strong>执行条件</strong>和<strong>预期的输入</strong>。<br>测试用例是执行的最小实例。</p>
+<h2 id="等价类划分法-※※※"><a href="#等价类划分法-※※※" class="headerlink" title="等价类划分法 ※※※"></a>等价类划分法 ※※※</h2><p>将不能穷举的测试过程进行合理分类，使测试用例具有完成性和代表性。<br>两个重要意义：完备性，无冗余性。<br>等价类分有效等价类和无效等价类。</p>
+<h3 id="设计测试用例步骤-※※※"><a href="#设计测试用例步骤-※※※" class="headerlink" title="设计测试用例步骤 ※※※"></a>设计测试用例步骤 ※※※</h3><ol>
+<li>确定等价类，列出等价类表</li>
+<li>确定测试用例</li>
+</ol>
+<h3 id="等价划分的依据"><a href="#等价划分的依据" class="headerlink" title="等价划分的依据"></a>等价划分的依据</h3><ol>
+<li>按照区间划分</li>
+<li>按照数值划分</li>
+<li>按照数值集合划分</li>
+<li>按照限制条件或规则划分</li>
+<li>细分等价类</li>
+</ol>
+<p>**大题见附录</p>
+<p>针对是否对无效数据进行测试，划分为<strong>标准等价类测试</strong>和<strong>健壮等价类测试</strong>。</p>
+<h2 id="边界值分析法-※※※"><a href="#边界值分析法-※※※" class="headerlink" title="边界值分析法 ※※※"></a>边界值分析法 ※※※</h2><p>对输入或输出的边界值进行测试。</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>确定边界情况</li>
+<li>选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据</li>
+</ol>
+<p>**大题见附录</p>
+<h2 id="因果图法"><a href="#因果图法" class="headerlink" title="因果图法"></a>因果图法</h2><p>一种利用图解法分析输入的各种组合情况，考虑输入条件之间的相互制约关系。<br>四种关系：与、或、非、恒等</p>
+<h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>画出因果图</li>
+<li>转换为判定表</li>
+<li>为表中每一列所表示的情况设计一个测试用例</li>
+</ol>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><p>输入状态相互之间、输出状态相互之间可能存在某些依赖关系，称为“约束”。<br>对于输入条件的约束有E、I、O、R四种约束，输出条件只有M约束</p>
+<ul>
+<li>E约束（异）：a和b中最多有一个可能为1</li>
+<li>I约束（或）：a，b，c中至少有一个必须为1</li>
+<li>O约束（唯一）：a和b必须有且仅有一个为1</li>
+<li>R约束（要求）：a是1，b必须是1</li>
+<li>M约束（强制）：a为1，b强制为0</li>
+</ul>
+<h2 id="决策表法"><a href="#决策表法" class="headerlink" title="决策表法"></a>决策表法</h2><h1 id="第四章-白盒测试-※※※"><a href="#第四章-白盒测试-※※※" class="headerlink" title="第四章 白盒测试 ※※※"></a>第四章 白盒测试 ※※※</h1><p>是针对被测单元内部是如何进行工作的测试</p>
+<h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><ol>
+<li>保证一个模块中所有<strong>独立路径</strong>至少被测试一次</li>
+<li>所有逻辑值均需测试真假两种情况</li>
+<li>检查程序的内部数据结构，保证其结构的有效性</li>
+<li>在上下边界及可操作范围内运行所有循环</li>
+</ol>
+<h2 id="控制流图-※※※"><a href="#控制流图-※※※" class="headerlink" title="控制流图 ※※※"></a>控制流图 ※※※</h2><p>由程序流程图简化后得到，更加突出表示程序控制流的结构</p>
+<p>节点：表示一个或多个无分支的语句或源程序语句</p>
+<pre class="mermaid">graph LR
+
+    subgraph "Sequential"
+        a-->b-->c
+        end
+    subgraph "IF"
+        d-->e-->g
+        d-->f-->g
+        end
+    subgraph "WHILE"
+        h-->i-->h-->j
+        end
+    subgraph "UNTIL"
+        k-->l-->k
+        l-->m
+        end
+    subgraph "CASE"
+        n-->p-->s
+        n-->q-->s
+        n-->r-->s
+        end</pre>
+
+<h3 id="环形复杂度-※※※"><a href="#环形复杂度-※※※" class="headerlink" title="环形复杂度 ※※※"></a>环形复杂度 ※※※</h3><p>也称为圈复杂度，记作$V(G)$。两种定义：</p>
+<p>$V(G)&#x3D;E-N+2$，其中$E$为控制流图中的边数，$N$是控制流图中的节点数。</p>
+<p>$V(G)&#x3D;P+1$，其中$P$是控制流图中判定节点的数量。</p>
+<p>根据流程图完成：</p>
+<ol>
+<li>画出相应的控制流图</li>
+<li>计算环形复杂度</li>
+<li>给出相应的图矩阵</li>
+<li>找出程序的独立路径集合</li>
+</ol>
+<h2 id="覆盖测试-※※※"><a href="#覆盖测试-※※※" class="headerlink" title="覆盖测试 ※※※"></a>覆盖测试 ※※※</h2><h3 id="逻辑覆盖法"><a href="#逻辑覆盖法" class="headerlink" title="逻辑覆盖法"></a>逻辑覆盖法</h3><ul>
+<li>语句覆盖<br>  程序中的每个可执行语句至少执行一次</li>
+<li>判定覆盖 ※※※<br>  程序中每个判定至少获得一次“真”值和“假”值</li>
+<li>条件覆盖 ※<br>  程序中每个判定包含的每个条件的可能取值都至少满足一次</li>
+<li>判定&#x2F;条件覆盖（同时满足判定覆盖和条件覆盖）※<br>  程序中每个判定包含的每个条件至少获得一次“真”值和“假”值且本身的判定结果也至少出现一次</li>
+<li>组合覆盖（满足判断&#x2F;条件覆盖）<br>  程序中每个判定的所有可能的条件取值组合都至少出现一次</li>
+<li>路径覆盖<br>  覆盖程序中所有可能的路径</li>
+</ul>
+<h2 id="路径测试"><a href="#路径测试" class="headerlink" title="路径测试"></a>路径测试</h2><p>即从一个程序的入口开始，执行所经历的各个语句的完整过程。<br>通常采用控制流图的边（弧）序列的节点序列表示某一条具体路径。</p>
+<h3 id="路径表达式"><a href="#路径表达式" class="headerlink" title="路径表达式"></a>路径表达式</h3><p>表示方法：</p>
+<ul>
+<li>弧a和弧b相乘，表示为ab，表示路径先经历a再经历b</li>
+<li>弧a和弧b相加，表示为a+b，表示两条弧是并行的</li>
+</ul>
+<p>所有弧以数值1代替，进行相加相乘运算，得出的结果即为程序的路径数</p>
+<h3 id="基本路径测试方法"><a href="#基本路径测试方法" class="headerlink" title="基本路径测试方法"></a>基本路径测试方法</h3><p>独立路径是指从程序入口到出口多次执行中，每次至少有一个语句是新的，未被重复的。</p>
+<h4 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li>画出程序的控制流图</li>
+<li>计算程序的环形复杂度</li>
+<li>导出基本路径集，确定程序的独立路径。</li>
+<li>根据(3)中的独立路径，设计测试用例的输入数据和预期输出</li>
+</ol>
+<h2 id="循环测试"><a href="#循环测试" class="headerlink" title="循环测试"></a>循环测试</h2><p>目的是检查循环结构的有效性</p>
+<p>循环划分为：简单循环、嵌套循环、串接循环、非结构循环</p>
+<p>测试简单循环的测试集：</p>
+<ol>
+<li>跳过整个循环</li>
+<li>只循环1次</li>
+<li>只循环2次</li>
+<li>循环m次，其中m&lt;n</li>
+<li>分别循环n-1、n和n+1次</li>
+</ol>
+<h2 id="最少用例测试"><a href="#最少用例测试" class="headerlink" title="最少用例测试"></a>最少用例测试</h2><h1 id="第五章-软件特定环境及应用系统测试"><a href="#第五章-软件特定环境及应用系统测试" class="headerlink" title="第五章 软件特定环境及应用系统测试"></a>第五章 软件特定环境及应用系统测试</h1><h2 id="Web测试"><a href="#Web测试" class="headerlink" title="Web测试"></a>Web测试</h2><h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><ul>
+<li>并发用户：所有用户在同一时刻做同一件事情或操作</li>
+<li>并发用户数量：在同一时段与服务器进行了交互的在线用户数量</li>
+<li>请求相应时间：客户端发出请求到得到相应的整个过程的时间</li>
+<li>事物相应时间：向用户提供的业务相应时间</li>
+<li>吞吐量：在一次性能测试过程中网络上传输的数据量的总和</li>
+<li>点击率：每秒钟用户向Web服务器提交的HTTP请求数</li>
+<li>TPS：每秒钟系统能处理的交易或事物的数量</li>
+<li>资源利用率：对不同的系统资源的使用程度</li>
+<li>虚拟用户：模拟浏览器向Web服务器发送请求并接收相应的一个进程或线程</li>
+<li>请求成功率：Web服务器正确处理的请求数量和接收到的请求数量的比</li>
+</ul>
+<h3 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h3><ul>
+<li>Avg Rps：平均每杪钟响应次数</li>
+<li>Successful Rounds“成功的请求</li>
+<li>Failed Rounds：失败的请求</li>
+<li>Successful Hits：成功的点击次数</li>
+<li>Failed Hits：失败的点击次数</li>
+<li>Hits Per Second：每秒点击次数</li>
+<li>Succesful Hits Per Second: 每秒成功的点击次数</li>
+<li>Failed Hits Per Second：每秒失败的点击次数</li>
+<li>Attempted Connections：尝试链接数</li>
+</ul>
+<h2 id="面向对象软件测试"><a href="#面向对象软件测试" class="headerlink" title="面向对象软件测试"></a>面向对象软件测试</h2><h3 id="面向对象软件特点"><a href="#面向对象软件特点" class="headerlink" title="面向对象软件特点"></a>面向对象软件特点</h3><ul>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ul>
+<h3 id="面向对象软件测试策略"><a href="#面向对象软件测试策略" class="headerlink" title="面向对象软件测试策略"></a>面向对象软件测试策略</h3><p>4个层次</p>
+<ul>
+<li>方法测试<br>  对类中的各个方法进行单独测试</li>
+<li>类测试<br>  类内方法间的交互和其对象的各个状态</li>
+<li>类簇测试<br>  测试一组协同操作类之间的相互作用</li>
+<li>系统测试<br>  检验所有类和整个软件系统是否符合需求</li>
+</ul>
+<h2 id="移动端软件测试"><a href="#移动端软件测试" class="headerlink" title="移动端软件测试"></a>移动端软件测试</h2><h1 id="大题之黑盒测试"><a href="#大题之黑盒测试" class="headerlink" title="大题之黑盒测试"></a>大题之黑盒测试</h1><h2 id="等价类测试"><a href="#等价类测试" class="headerlink" title="等价类测试"></a>等价类测试</h2><h3 id="三角形问题"><a href="#三角形问题" class="headerlink" title="三角形问题"></a>三角形问题</h3><p>输入三个整数a、b、c，分别作为三角形的三条边，<br>现通过程序判断由三条边构成的三角形的类型为等边三角形、<br>等腰三角形、一般三角形（特殊的还有直角三角形），<br>以及构不成三角形。</p>
+<p>输入条件：<br>$1 \le a \le 100$<br>$1 \le b \le 100$<br>$1 \le c \le 100$<br>$a \lt b + c$<br>$b \lt a + c$<br>$c \lt a + b$</p>
+<p>划分等价类</p>
+<p>$R_1&#x3D;{&lt;a, b, c&gt;:边为a,b,c的等边三角形}$</p>
+<p>$R_2&#x3D;{&lt;a, b, c&gt;:边为a,b,c的等腰三角形}$</p>
+<p>$R_3&#x3D;{&lt;a, b, c&gt;:边为a,b,c的一般三角形}$</p>
+<p>$R_4&#x3D;{&lt;a, b, c&gt;:边为a,b,c的不能组成三角形}$</p>
+<p>为标准等价类设计测试用例</p>
+<table>
+<thead>
+<tr>
+<th>测试用例</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>预期输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>等边三角形</td>
+</tr>
+<tr>
+<td>2</td>
+<td>10</td>
+<td>10</td>
+<td>5</td>
+<td>等腰三角形</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>一般三角形</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>非三角形</td>
+</tr>
+</tbody></table>
+<p>为健壮性等价类划分测试用例</p>
+<table>
+<thead>
+<tr>
+<th>测试用例</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>预期输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>一般三角形</td>
+</tr>
+<tr>
+<td>2</td>
+<td>-1</td>
+<td>5</td>
+<td>5</td>
+<td>a超出输入设定域</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>-1</td>
+<td>5</td>
+<td>b超出输入设定域</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>5</td>
+<td>-1</td>
+<td>c超出输入设定域</td>
+</tr>
+<tr>
+<td>5</td>
+<td>101</td>
+<td>5</td>
+<td>5</td>
+<td>a超出输入设定域</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>101</td>
+<td>5</td>
+<td>b超出输入设定域</td>
+</tr>
+<tr>
+<td>7</td>
+<td>5</td>
+<td>5</td>
+<td>101</td>
+<td>c超出输入设定域</td>
+</tr>
+</tbody></table>
+<h3 id="NextDate函数"><a href="#NextDate函数" class="headerlink" title="NextDate函数"></a>NextDate函数</h3><p>NextDate函数包含三个变量month，day和year，函数的输出为输入日期后一天的日期。<br>要求输入变量month、day和year均为整数值，并且满足下列条件：</p>
+<p>$1 \le month \le 12$</p>
+<p>$1\le day \le 31$</p>
+<p>$1912\le year \le 2050$</p>
+<p>输入域等价类表</p>
+<table>
+<thead>
+<tr>
+<th>输入域等价类</th>
+<th>有效等价类</th>
+<th>无效等价类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日期范围</td>
+<td>1. 1$\le$ 日期$\le$ 27<br> 2. 日期&#x3D;28<br> 3. 日期&#x3D;29<br> 4. 日期&#x3D;30<br> 5. 日期&#x3D;31</td>
+<td>6. 日期&lt;1<br> 7. 日期&gt;31<br> 8. 日期&#x3D;29<br> 9. 日期&#x3D;30<br> 10. 日期&#x3D;31</td>
+</tr>
+<tr>
+<td>月份范围</td>
+<td>11. 月份&#x3D;4，6，9，11<br> 12. 月份&#x3D;1，3，5，7，8，10<br> 13. 月份&#x3D;2<br> 14. 月份&#x3D;12</td>
+<td>15. 月份&lt;1<br> 16. 月份&gt;12</td>
+</tr>
+<tr>
+<td>年份范围</td>
+<td>17. 1912$\le$ 年$\le$ 2050的闰年<br> 18. 1912$\le$ 年$\le$ 2050的非闰年</td>
+<td>19. 年&lt;1912<br> 20. 年&gt;2050</td>
+</tr>
+</tbody></table>
+<p>等价类测试用例设计</p>
+<table>
+<thead>
+<tr>
+<th>用例</th>
+<th>日期</th>
+<th>月份</th>
+<th>年</th>
+<th>预期输出</th>
+<th>覆盖有效等价类</th>
+<th>覆盖无效等价类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>30</td>
+<td>4</td>
+<td>2008</td>
+<td>2008-05-01</td>
+<td>1、11、17</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>31</td>
+<td>4</td>
+<td>2008</td>
+<td>日期错误</td>
+<td>11、17</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>31</td>
+<td>5</td>
+<td>2008</td>
+<td>2008-06-01</td>
+<td>5、12、17</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>29</td>
+<td>2</td>
+<td>2008</td>
+<td>2008-03-01</td>
+<td>3、13、17</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>30</td>
+<td>2</td>
+<td>2008</td>
+<td>日期错误</td>
+<td>13、17</td>
+<td>9</td>
+</tr>
+<tr>
+<td>6</td>
+<td>27</td>
+<td>12</td>
+<td>2008</td>
+<td>2008-12-28</td>
+<td>1、14、17</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>31</td>
+<td>12</td>
+<td>2008</td>
+<td>2009-01-01</td>
+<td>5、14、17</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>29</td>
+<td>2</td>
+<td>2010</td>
+<td>日期错误</td>
+<td>13、18</td>
+<td>8</td>
+</tr>
+<tr>
+<td>9</td>
+<td>-1</td>
+<td>6</td>
+<td>2004</td>
+<td>日期错误</td>
+<td>11、17</td>
+<td>6</td>
+</tr>
+<tr>
+<td>10</td>
+<td>32</td>
+<td>7</td>
+<td>2005</td>
+<td>日期错误</td>
+<td>12、18</td>
+<td>7</td>
+</tr>
+<tr>
+<td>11</td>
+<td>30</td>
+<td>-1</td>
+<td>2000</td>
+<td>月份错误</td>
+<td>4、17</td>
+<td>15</td>
+</tr>
+<tr>
+<td>12</td>
+<td>31</td>
+<td>13</td>
+<td>2001</td>
+<td>月份错误</td>
+<td>5、18</td>
+<td>16</td>
+</tr>
+<tr>
+<td>13</td>
+<td>27</td>
+<td>8</td>
+<td>1911</td>
+<td>年份错误</td>
+<td>1、12</td>
+<td>19</td>
+</tr>
+<tr>
+<td>14</td>
+<td>28</td>
+<td>9</td>
+<td>2051</td>
+<td>年份错误</td>
+<td>2、11</td>
+<td>20</td>
+</tr>
+</tbody></table>
+<h2 id="边界值分析法"><a href="#边界值分析法" class="headerlink" title="边界值分析法"></a>边界值分析法</h2><h3 id="二元函数"><a href="#二元函数" class="headerlink" title="二元函数"></a>二元函数</h3><p>有二元函数$f(x,y)$，其中$x\in[1,12],y\in[1,31]$，<br>采用边界值分析法设计的<strong>标准</strong>测试用例是：</p>
+<p>{<br>&lt;1, 15&gt;, &lt;2, 15&gt;, &lt;11, 15&gt;, &lt;12, 15&gt;,<br>&lt;6, 1&gt;, &lt;6, 2&gt;, &lt;6, 30&gt;, &lt;6, 31&gt;,<br>&lt;6, 15&gt;<br>}</p>
+<p>采用边界值分析法设计的<strong>健壮性</strong>测试用例是：</p>
+<p>{<br><strong>&lt;0, 15&gt;</strong>, &lt;1, 15&gt;, &lt;2, 15&gt;, &lt;11, 15&gt;, &lt;12, 15&gt;, <strong>&lt;13, 15&gt;</strong><br><strong>&lt;6, 0&gt;</strong>, &lt;6, 1&gt;, &lt;6, 2&gt;, &lt;6, 30&gt;, &lt;6, 31&gt;, <strong>&lt;6, 32&gt;</strong><br>&lt;6, 15&gt;<br>}</p>
+<h3 id="NextDate函数-1"><a href="#NextDate函数-1" class="headerlink" title="NextDate函数"></a>NextDate函数</h3><p>边界值分析法测试用例</p>
+<table>
+<thead>
+<tr>
+<th>测试用例</th>
+<th>month</th>
+<th>day</th>
+<th>year</th>
+<th>预期输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>6</td>
+<td>15</td>
+<td>1911</td>
+<td>1911.6.16</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6</td>
+<td>15</td>
+<td>1912</td>
+<td>1912.6.16</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+<td>15</td>
+<td>1913</td>
+<td>1913.6.16</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6</td>
+<td>15</td>
+<td>1975</td>
+<td>1975.6.16</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6</td>
+<td>15</td>
+<td>2049</td>
+<td>2049.6.16</td>
+</tr>
+<tr>
+<td>6</td>
+<td>6</td>
+<td>15</td>
+<td>2050</td>
+<td>2050.6.16</td>
+</tr>
+<tr>
+<td>7</td>
+<td>6</td>
+<td>15</td>
+<td>2051</td>
+<td>2051.6.16</td>
+</tr>
+<tr>
+<td>8</td>
+<td>6</td>
+<td>-1</td>
+<td>2001</td>
+<td>day超出[1…31]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>6</td>
+<td>1</td>
+<td>2001</td>
+<td>2001.6.2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>6</td>
+<td>2</td>
+<td>2001</td>
+<td>2001.6.3</td>
+</tr>
+<tr>
+<td>11</td>
+<td>6</td>
+<td>30</td>
+<td>2001</td>
+<td>2001.7.1</td>
+</tr>
+<tr>
+<td>12</td>
+<td>6</td>
+<td>31</td>
+<td>2001</td>
+<td>输入日期超界</td>
+</tr>
+<tr>
+<td>13</td>
+<td>6</td>
+<td>32</td>
+<td>2001</td>
+<td>day超出[1…31]</td>
+</tr>
+<tr>
+<td>14</td>
+<td>-1</td>
+<td>15</td>
+<td>2001</td>
+<td>month超出[1…12]</td>
+</tr>
+<tr>
+<td>15</td>
+<td>1</td>
+<td>15</td>
+<td>2001</td>
+<td>2001.1.16</td>
+</tr>
+<tr>
+<td>16</td>
+<td>2</td>
+<td>15</td>
+<td>2001</td>
+<td>2001.2.16</td>
+</tr>
+<tr>
+<td>17</td>
+<td>11</td>
+<td>15</td>
+<td>2001</td>
+<td>2001.11.16</td>
+</tr>
+<tr>
+<td>18</td>
+<td>12</td>
+<td>15</td>
+<td>2001</td>
+<td>2001.12.16</td>
+</tr>
+<tr>
+<td>19</td>
+<td>13</td>
+<td>15</td>
+<td>2001</td>
+<td>month超出[1…12]</td>
+</tr>
+</tbody></table>
+<h1 id="大题之白盒测试"><a href="#大题之白盒测试" class="headerlink" title="大题之白盒测试"></a>大题之白盒测试</h1><h2 id="逻辑覆盖法-1"><a href="#逻辑覆盖法-1" class="headerlink" title="逻辑覆盖法"></a>逻辑覆盖法</h2><h3 id="DoWork"><a href="#DoWork" class="headerlink" title="DoWork"></a>DoWork</h3><p>有如下程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">DoWork</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> &#123;</span><br><span class="line">    <span class="type">int</span> k=<span class="number">0</span>, j=<span class="number">0</span>;        <span class="comment">// 1</span></span><br><span class="line">    <span class="keyword">if</span> ((x&gt;<span class="number">3</span>)&amp;&amp;(z&lt;<span class="number">10</span>)) &#123; <span class="comment">// 2</span></span><br><span class="line">        k=x*y<span class="number">-1</span>;         <span class="comment">// 3</span></span><br><span class="line">        j=<span class="built_in">sqrt</span>(k);       <span class="comment">// 4</span></span><br><span class="line">    &#125; <span class="comment">// 语句块1             5</span></span><br><span class="line">    <span class="keyword">if</span> ((x==<span class="number">4</span>)||(y&gt;<span class="number">5</span>)) &#123; <span class="comment">// 6</span></span><br><span class="line">        j=x*y+<span class="number">10</span>;        <span class="comment">// 7</span></span><br><span class="line">    &#125; <span class="comment">// 语句块2             8</span></span><br><span class="line">    j=j%<span class="number">3</span>; <span class="comment">// 语句块3        9</span></span><br><span class="line">&#125;                        <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>画出流程图：</p>
+<pre class="mermaid">graph TD
+    start(["开始"])--"a"-->t1{"x>3&&z<10"}--"T  b"-->b1["执行语句块1"]
+    -->t2{"x==4||y>5"}--"T  d"-->b2["执行语句块2"]
+    -->b3["执行语句块3"]-->stop(["结束"])
+
+    t1--"F  c"-->t2
+    t2--"F  e"-->b3</pre>
+
+<p>画出程序控制流图</p>
+<pre class="mermaid">graph LR
+    a(("1 2"))--T-->b(("3 4 5"))-->c(("6"))--T-->d(("7 8"))-->e(("9"))
+    a--F-->c--F-->e</pre>
+<p>独立路径为</p>
+<p>① 1–2–6–9</p>
+<p>② 1–2–6–7–8–9</p>
+<p>③ 1–2–3–4–5–6–9</p>
+<p>④ 1–2–3–4–5–6–7–8–9</p>
+<ul>
+<li>语句覆盖:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+<th>执行语句</th>
+<th>执行路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>5</td>
+<td>5</td>
+<td>1 2 3 4 5 6 7 8 9</td>
+<td>a b d</td>
+</tr>
+</tbody></table>
+<ul>
+<li>判定覆盖：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+<th>执行语句</th>
+<th>执行路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>5</td>
+<td>5</td>
+<td>1 2 3 4 5 6 7 8 9</td>
+<td>a b d</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>1 2 6 9</td>
+<td>a c e</td>
+</tr>
+</tbody></table>
+<ul>
+<li>条件覆盖：</li>
+</ul>
+<p>对于第一个判定((x&gt;3)&amp;&amp;(z&lt;10))：<br>设条件x&gt;3取真值为T1，取假值为-T1；条件z&lt;10取真值为T2，取假值为-T2;</p>
+<p>对于第一个判定((x==4)||(y&gt;5))：<br>设条件x==4取真值为T3，取假值为-T3；条件y&gt;5取真值为T4，取假值为-T4;</p>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+<th>覆盖条件</th>
+<th>执行语句</th>
+<th>执行路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>T1 T2 T3 T4</td>
+<td>1 2 3 4 5 6 7 8 9</td>
+<td>a b d</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>15</td>
+<td>-T1 -T2 -T3 -T4</td>
+<td>1 2 6 9</td>
+<td>a c e</td>
+</tr>
+</tbody></table>
+<p>或者</p>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+<th>覆盖条件</th>
+<th>执行语句</th>
+<th>执行路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>6</td>
+<td>5</td>
+<td>-T1 T2 -T3 T4</td>
+<td>1 2 6 7 8 9</td>
+<td>a c d</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>15</td>
+<td>T1 -T2 T3 -T4</td>
+<td>1 2 6 7 8 9</td>
+<td>a c d</td>
+</tr>
+</tbody></table>
+<ul>
+<li>判定&#x2F;条件覆盖：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+<th>覆盖条件</th>
+<th>执行语句</th>
+<th>执行路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>T1 T2 T3 T4</td>
+<td>1 2 3 4 5 6 7 8 9</td>
+<td>a b d</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>15</td>
+<td>-T1 -T2 -T3 -T4</td>
+<td>1 2 6 9</td>
+<td>a c e</td>
+</tr>
+</tbody></table>
+<ul>
+<li>组合覆盖：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+<th>覆盖条件</th>
+<th>执行语句</th>
+<th>执行路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>T1 T2 T3 T4</td>
+<td>1 2 3 4 5 6 7 8 9</td>
+<td>a b d</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>15</td>
+<td>-T1 -T2 -T3 -T4</td>
+<td>1 2 6 9</td>
+<td>a c e</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6</td>
+<td>5</td>
+<td>-T1 T2 -T3 T4</td>
+<td>1 2 6 7 8 9</td>
+<td>a c d</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>15</td>
+<td>T1 -T2 T3 -T4</td>
+<td>1 2 6 7 8 9</td>
+<td>a c d</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" rel="tag"># 课程笔记</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" rel="tag"># 软件测试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/RSA%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F/" rel="prev" title="RSA密码系统">
+                  <i class="fa fa-angle-left"></i> RSA密码系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/Linux/" rel="next" title="Linux">
+                  Linux <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Toshihiko Chen</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">21k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:17</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.min.js","integrity":"sha256-9y71g5Lz/KLsHjB8uXwnkuWDtAMDSzD/HdIbqhJfTAI="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

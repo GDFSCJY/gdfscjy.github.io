@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="你GAN嘛哎哟：）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="003 GAN和Lightning">
+<meta property="og:url" content="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/003%20GAN%E5%92%8CLightning/index.html">
+<meta property="og:site_name" content="TSHK blog">
+<meta property="og:description" content="你GAN嘛哎哟：）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/003%20GAN%E5%92%8CLightning/outputs.png">
+<meta property="article:published_time" content="2023-06-30T03:55:02.000Z">
+<meta property="article:modified_time" content="2023-08-14T03:26:04.220Z">
+<meta property="article:author" content="Toshihiko Chen">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="PyTorch">
+<meta property="article:tag" content="Lightning">
+<meta property="article:tag" content="GAN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/003%20GAN%E5%92%8CLightning/outputs.png">
+
+
+<link rel="canonical" href="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/003%20GAN%E5%92%8CLightning/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/003%20GAN%E5%92%8CLightning/","path":"2023/深度学习/Lightning/003 GAN和Lightning/","title":"003 GAN和Lightning"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>003 GAN和Lightning | TSHK blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TSHK blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GAN"><span class="nav-number">1.</span> <span class="nav-text">GAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CGAN"><span class="nav-number">1.3.</span> <span class="nav-text">CGAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CGAN-PyTorch"><span class="nav-number">1.4.</span> <span class="nav-text">CGAN PyTorch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lightning"><span class="nav-number">2.</span> <span class="nav-text">Lightning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E4%BC%98%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">设置手动优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">设置优化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.3.</span> <span class="nav-text">训练步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">2.4.</span> <span class="nav-text">完整代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%95%88%E6%9E%9C"><span class="nav-number">2.5.</span> <span class="nav-text">训练效果</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Toshihiko Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/003%20GAN%E5%92%8CLightning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Toshihiko Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TSHK blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="003 GAN和Lightning | TSHK blog">
+      <meta itemprop="description" content="你GAN嘛哎哟：）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          003 GAN和Lightning
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-30 11:55:02" itemprop="dateCreated datePublished" datetime="2023-06-30T11:55:02+08:00">2023-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/" itemprop="url" rel="index"><span itemprop="name">Lightning</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">你GAN嘛哎哟：）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>论文地址： <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1406.2661">https://arxiv.org/abs/1406.2661</a></p>
+<p>GAN（Generative Adversarial Network）全名叫做对抗生成网络或者生成对抗网络。</p>
+<p>核心思想是：生成器G用于生成图像，判别器D用于判断图片是真实的还是G生成的</p>
+<p>举个例子：</p>
+<p>一个小白小偷整假币，一个小白警察鉴别假币。<br>小偷画了个假币，警察收到假币学习和真币的区别。<br>同时警察也会抓做假币的小偷，小偷从中学习如何制作更真的假币。</p>
+<p>同样的道理：<br>G生成的图像给D判别真假，并指导G学习；<br>D也从真实图像和G生成的图像学习判别真假</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>在原始GAN中，生成器G的输入是随机输入的高斯噪音，输出是生成器映射图像；<br>判别器D的输入则是真实的图片或者来自生成器的图片，输出是判别这玩意有多假（0到1）</p>
+<p>显然GAN和以往的生成模型不同。以往的生成模型使用设定好的损失函数，让模型基于损失来逼近全局最优解；<br>而GAN则是通过判别器D所提供的梯度信息对生成器G进行优化，是一个相互博弈的过程。</p>
+<h2 id="CGAN"><a href="#CGAN" class="headerlink" title="CGAN"></a>CGAN</h2><p>论文地址： <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1411.1784">https://arxiv.org/abs/1411.1784</a></p>
+<p>原始的GAN是输入噪音，给出图片，但是这个图片的内容是不可控制的（因为你也不能指定它你要生成啥）。<br>因此CGAN的思想是想办法输入个标签进去，指导它去生成你想要的东西。</p>
+<p>生成器G流程图：</p>
+<pre class="mermaid">graph LR
+  A["Noise\nz"] --> C["Layers"] --> D["Outputs\nG(z|y)"]
+  B["Label\ny"] --> C</pre>
+
+<p>判别器D流程图：</p>
+<pre class="mermaid">graph LR
+  A["Image\nx"] --> C["Layers"] --> D["Classification\nD(x|y)"]
+  B["Label\ny"] --> C</pre>
+
+<h2 id="CGAN-PyTorch"><a href="#CGAN-PyTorch" class="headerlink" title="CGAN PyTorch"></a>CGAN PyTorch</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Generator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.generator_label = nn.Embedding(<span class="number">10</span>, <span class="number">100</span>)</span><br><span class="line">        self.generator_noise = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">100</span>, <span class="number">256</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.BatchNorm1d(<span class="number">256</span>),</span><br><span class="line">            nn.Linear(<span class="number">256</span>, <span class="number">512</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.BatchNorm1d(<span class="number">512</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, <span class="number">1024</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.BatchNorm1d(<span class="number">1024</span>),</span><br><span class="line">            nn.Linear(<span class="number">1024</span>, <span class="number">784</span>),</span><br><span class="line">            nn.Tanh()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, y, z</span>):</span><br><span class="line">        <span class="keyword">return</span> self.generator_noise(self.generator_label(y) * z)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Discriminator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.discriminator_label = nn.Embedding(<span class="number">10</span>, <span class="number">784</span>)</span><br><span class="line">        self.discriminator_image = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">784</span>, <span class="number">512</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, <span class="number">512</span>),</span><br><span class="line">            nn.LeakyReLU(),</span><br><span class="line">            nn.Dropout(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, <span class="number">512</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Dropout(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, <span class="number">1</span>),</span><br><span class="line">            nn.Sigmoid()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> self.discriminator_image(self.discriminator_label(y) * x)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Lightning"><a href="#Lightning" class="headerlink" title="Lightning"></a>Lightning</h1><p>要训练GAN,意味着要同时训练两个模型，意味着需要两个优化器，这时Lightning自带的自动优化就不太行了，需要设置手动优化。<br>还是拿MNIST为例</p>
+<h2 id="设置手动优化"><a href="#设置手动优化" class="headerlink" title="设置手动优化"></a>设置手动优化</h2><p>设置<code>LightningModule</code>的<code>automatic_optimization</code>属性为<code>False</code>，这样每个训练step结束后不会自动调用反向传播、优化器步进和梯度归零了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CGAN</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.automatic_optimization = <span class="literal">False</span>  <span class="comment"># 禁止自动优化</span></span><br><span class="line"></span><br><span class="line">        self.generator = Generator()    <span class="comment"># 生成器</span></span><br><span class="line">        self.discriminator = Discriminator()    <span class="comment"># 判别器</span></span><br><span class="line">        self.criterion = nn.BCELoss()    <span class="comment"># 二分类交叉熵</span></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<h2 id="设置优化器"><a href="#设置优化器" class="headerlink" title="设置优化器"></a>设置优化器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CGAN</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.automatic_optimization = <span class="literal">False</span>  <span class="comment"># 禁止自动优化</span></span><br><span class="line"></span><br><span class="line">        self.generator = Generator()    <span class="comment"># 生成器</span></span><br><span class="line">        self.discriminator = Discriminator()    <span class="comment"># 判别器</span></span><br><span class="line">        self.criterion = nn.BCELoss()    <span class="comment"># 二分类交叉熵</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_optimizers</span>(<span class="params">self</span>):</span><br><span class="line">        opt_g = torch.optim.Adam(self.generator.parameters(), lr=<span class="number">3e-4</span>)</span><br><span class="line">        opt_d = torch.optim.Adam(self.discriminator.parameters(), lr=<span class="number">3e-4</span>)</span><br><span class="line">        <span class="keyword">return</span> [opt_g, opt_d], []</span><br></pre></td></tr></table></figure>
+
+<p><code>configure_optimizers</code>方法有5种返回内容：</p>
+<ol>
+<li>单一个优化器</li>
+<li>一列表或元组的优化器</li>
+<li>两个列表，一个装优化器，另一个装学习率调度器（scheduler）或者<code>lr_scheduler_config</code></li>
+<li>一个字典，关键字<code>optimizer</code>装优化器，<code>lr_scheduler</code>装学习率调度器或者<code>lr_scheduler_config</code></li>
+<li>啥都不返回，不优化了</li>
+</ol>
+<h2 id="训练步骤"><a href="#训练步骤" class="headerlink" title="训练步骤"></a>训练步骤</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">training_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">    x, y = batch    <span class="comment"># 获得真实图和对应标签</span></span><br><span class="line">    x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">    z = torch.randn(x.shape[<span class="number">0</span>], <span class="number">100</span>).type_as(x)    <span class="comment"># 生成噪声</span></span><br><span class="line">    optimizer_g, optimizer_d = self.optimizers()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># train generator</span></span><br><span class="line">    self.toggle_optimizer(optimizer_g)    <span class="comment"># 切换到生成器的优化器，确保只计算生成器的梯度</span></span><br><span class="line">    x_hat = self.generator(y, z)    <span class="comment"># 使用标签和噪声生成假图</span></span><br><span class="line">    y_hat = self.discriminator(x_hat, y)    <span class="comment"># 假图和标签放入判别器</span></span><br><span class="line">    loss_g = self.criterion(y_hat, torch.ones_like(y_hat))    <span class="comment"># 衡量假图和真图（1）之间的差距</span></span><br><span class="line">    self.manual_backward(loss_g)    <span class="comment"># 手动反向传播</span></span><br><span class="line">    optimizer_g.step()    <span class="comment"># 手动优化器步进</span></span><br><span class="line">    optimizer_g.zero_grad()    <span class="comment"># 梯度清零</span></span><br><span class="line">    self.untoggle_optimizer(optimizer_g)    <span class="comment"># 挂起生成器优化器</span></span><br><span class="line">    self.log(<span class="string">&#x27;g_loss&#x27;</span>, loss_g, on_epoch=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># train discriminator</span></span><br><span class="line">    self.toggle_optimizer(optimizer_d)    <span class="comment"># 切换到判别器的优化器</span></span><br><span class="line">    <span class="comment"># real</span></span><br><span class="line">    y_hat = self.discriminator(x, y)    <span class="comment"># 输入真图和标签到判别器</span></span><br><span class="line">    loss_true = self.criterion(y_hat, torch.ones_like(y_hat))    <span class="comment"># 学习如何分类真图</span></span><br><span class="line">    <span class="comment"># fake</span></span><br><span class="line">    x_hat = self.generator(y, z).detach()   <span class="comment"># 生成假图</span></span><br><span class="line">    y_hat = self.discriminator(x_hat, y)    <span class="comment"># 输入假图和标签到判别器</span></span><br><span class="line">    loss_fake = self.criterion(y_hat, torch.zeros_like(y_hat))    <span class="comment"># 学习如何分类假图</span></span><br><span class="line">    <span class="comment"># total</span></span><br><span class="line">    loss_d = (loss_true + loss_fake) / <span class="number">2</span>    <span class="comment"># 均衡一下损失</span></span><br><span class="line">    self.manual_backward(loss_d)    <span class="comment"># 手动反向传播</span></span><br><span class="line">    optimizer_d.step()    <span class="comment"># 手动优化器步进</span></span><br><span class="line">    optimizer_d.zero_grad()    <span class="comment"># 梯度清零</span></span><br><span class="line">    self.untoggle_optimizer(optimizer_d)    <span class="comment"># 挂起判别器优化器</span></span><br><span class="line">    self.log(<span class="string">&#x27;d_loss&#x27;</span>, loss_d, on_epoch=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CGAN</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.automatic_optimization = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        self.generator = Generator()</span><br><span class="line">        self.discriminator = Discriminator()</span><br><span class="line">        self.criterion = nn.BCELoss()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.generator(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">training_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        x, y = batch    <span class="comment"># 获得真实图和对应标签</span></span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        z = torch.randn(x.shape[<span class="number">0</span>], <span class="number">100</span>).type_as(x)    <span class="comment"># 生成噪声</span></span><br><span class="line">        optimizer_g, optimizer_d = self.optimizers()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># train generator</span></span><br><span class="line">        self.toggle_optimizer(optimizer_g)    <span class="comment"># 切换到生成器的优化器，确保只计算生成器的梯度</span></span><br><span class="line">        x_hat = self.generator(y, z)    <span class="comment"># 使用标签和噪声生成假图</span></span><br><span class="line">        y_hat = self.discriminator(x_hat, y)    <span class="comment"># 假图和标签放入判别器</span></span><br><span class="line">        loss_g = self.criterion(y_hat, torch.ones_like(y_hat))    <span class="comment"># 衡量假图和真图（1）之间的差距</span></span><br><span class="line">        self.manual_backward(loss_g)    <span class="comment"># 手动反向传播</span></span><br><span class="line">        optimizer_g.step()    <span class="comment"># 手动优化器步进</span></span><br><span class="line">        optimizer_g.zero_grad()    <span class="comment"># 梯度清零</span></span><br><span class="line">        self.untoggle_optimizer(optimizer_g)    <span class="comment"># 挂起生成器优化器</span></span><br><span class="line">        self.log(<span class="string">&#x27;g_loss&#x27;</span>, loss_g, on_epoch=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># train discriminator</span></span><br><span class="line">        self.toggle_optimizer(optimizer_d)    <span class="comment"># 切换到判别器的优化器</span></span><br><span class="line">        <span class="comment"># real</span></span><br><span class="line">        y_hat = self.discriminator(x, y)    <span class="comment"># 输入真图和标签到判别器</span></span><br><span class="line">        loss_true = self.criterion(y_hat, torch.ones_like(y_hat))    <span class="comment"># 学习如何分类真图</span></span><br><span class="line">        <span class="comment"># fake</span></span><br><span class="line">        x_hat = self.generator(y, z).detach()   <span class="comment"># 生成假图</span></span><br><span class="line">        y_hat = self.discriminator(x_hat, y)    <span class="comment"># 输入假图和标签到判别器</span></span><br><span class="line">        loss_fake = self.criterion(y_hat, torch.zeros_like(y_hat))    <span class="comment"># 学习如何分类假图</span></span><br><span class="line">        <span class="comment"># total</span></span><br><span class="line">        loss_d = (loss_true + loss_fake) / <span class="number">2</span>    <span class="comment"># 均衡一下损失</span></span><br><span class="line">        self.manual_backward(loss_d)    <span class="comment"># 手动反向传播</span></span><br><span class="line">        optimizer_d.step()    <span class="comment"># 手动优化器步进</span></span><br><span class="line">        optimizer_d.zero_grad()    <span class="comment"># 梯度清零</span></span><br><span class="line">        self.untoggle_optimizer(optimizer_d)    <span class="comment"># 挂起判别器优化器</span></span><br><span class="line">        self.log(<span class="string">&#x27;d_loss&#x27;</span>, loss_d, on_epoch=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">validation_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        y = torch.tensor([x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]).to(self.device)</span><br><span class="line">        z = torch.randn(<span class="number">10</span>, <span class="number">100</span>).to(self.device)</span><br><span class="line">        x_hat = self.generator(y, z)</span><br><span class="line">        self.logger.experiment.add_images(<span class="string">&#x27;generated_images&#x27;</span>, x_hat.view(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>), self.current_epoch)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_optimizers</span>(<span class="params">self</span>):</span><br><span class="line">        opt_g = torch.optim.Adam(self.generator.parameters(), lr=<span class="number">3e-4</span>)</span><br><span class="line">        opt_d = torch.optim.Adam(self.discriminator.parameters(), lr=<span class="number">3e-4</span>)</span><br><span class="line">        <span class="keyword">return</span> [opt_g, opt_d], []</span><br></pre></td></tr></table></figure>
+
+<h2 id="训练效果"><a href="#训练效果" class="headerlink" title="训练效果"></a>训练效果</h2><p>用AdamW在学习率为3e-4下训练了40个epoch， 至少能看出来是数字。</p>
+<p>每一行是0到9, 每一列分别在第4、8、12…36、40 epoch生成。<br><img src="/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/003%20GAN%E5%92%8CLightning/outputs.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/PyTorch/" rel="tag"># PyTorch</a>
+              <a href="/tags/Lightning/" rel="tag"># Lightning</a>
+              <a href="/tags/GAN/" rel="tag"># GAN</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/%E6%9D%82%E8%B0%88/Hexo%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99/" rel="prev" title="Hexo快速建站">
+                  <i class="fa fa-angle-left"></i> Hexo快速建站
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/%E6%9D%82%E8%B0%88/Manjaro%E4%BF%AE%E5%A4%8DS3%E7%9D%A1%E7%9C%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9C%AA%E6%88%90%E5%8A%9F%EF%BC%89/" rel="next" title="Manjaro修复睡眠">
+                  Manjaro修复睡眠 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Toshihiko Chen</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">21k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:17</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.min.js","integrity":"sha256-9y71g5Lz/KLsHjB8uXwnkuWDtAMDSzD/HdIbqhJfTAI="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

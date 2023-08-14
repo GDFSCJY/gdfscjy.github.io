@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="个人记录：）不得不说Manjaro+KDE比隔壁Ubuntu+GNOME清爽太多了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manjaro安装后配置">
+<meta property="og:url" content="http://example.com/2023/%E6%9D%82%E8%B0%88/Manjaro%E5%AE%89%E8%A3%85%E5%90%8E%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="TSHK blog">
+<meta property="og:description" content="个人记录：）不得不说Manjaro+KDE比隔壁Ubuntu+GNOME清爽太多了">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-16T12:13:38.000Z">
+<meta property="article:modified_time" content="2023-08-14T03:26:04.220Z">
+<meta property="article:author" content="Toshihiko Chen">
+<meta property="article:tag" content="杂谈">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Manjaro">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/%E6%9D%82%E8%B0%88/Manjaro%E5%AE%89%E8%A3%85%E5%90%8E%E9%85%8D%E7%BD%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/%E6%9D%82%E8%B0%88/Manjaro%E5%AE%89%E8%A3%85%E5%90%8E%E9%85%8D%E7%BD%AE/","path":"2023/杂谈/Manjaro安装后配置/","title":"Manjaro安装后配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Manjaro安装后配置 | TSHK blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TSHK blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8D%A2%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">换源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%8D%A2%E6%BA%90"><span class="nav-number">1.1.</span> <span class="nav-text">自动换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-number">1.2.</span> <span class="nav-text">更新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">常用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7"><span class="nav-number">2.1.</span> <span class="nav-text">编译工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUR"><span class="nav-number">2.2.</span> <span class="nav-text">AUR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deb%E5%8C%85%E8%A7%A3%E5%8E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">deb包解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1"><span class="nav-number">2.4.</span> <span class="nav-text">微信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8B%B1%E4%BC%9F%E8%BE%BE%E9%A9%B1%E5%8A%A8"><span class="nav-number">2.5.</span> <span class="nav-text">英伟达驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HP%E6%89%93%E5%8D%B0%E6%9C%BA%E9%A9%B1%E5%8A%A8"><span class="nav-number">2.6.</span> <span class="nav-text">HP打印机驱动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6Swapfile"><span class="nav-number">3.</span> <span class="nav-text">交换文件Swapfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AESwap%E6%BF%80%E8%BF%9B%E7%A8%8B%E5%BA%A6"><span class="nav-number">3.0.1.</span> <span class="nav-text">设置Swap激进程度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anaconda%E5%92%8CZSH"><span class="nav-number">4.</span> <span class="nav-text">Anaconda和ZSH</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%9B%98"><span class="nav-number">5.</span> <span class="nav-text">开机自动挂载盘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E8%A6%81%E6%8C%82%E8%BD%BD%E7%9A%84%E7%A1%AC%E7%9B%98"><span class="nav-number">5.1.</span> <span class="nav-text">查找要挂载的硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BUUID"><span class="nav-number">5.2.</span> <span class="nav-text">查看UUID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91-etc-fstab"><span class="nav-number">5.3.</span> <span class="nav-text">编辑&#x2F;etc&#x2F;fstab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%90%AF"><span class="nav-number">5.4.</span> <span class="nav-text">重启</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Toshihiko Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/%E6%9D%82%E8%B0%88/Manjaro%E5%AE%89%E8%A3%85%E5%90%8E%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Toshihiko Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TSHK blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Manjaro安装后配置 | TSHK blog">
+      <meta itemprop="description" content="个人记录：）不得不说Manjaro+KDE比隔壁Ubuntu+GNOME清爽太多了">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Manjaro安装后配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-16 20:13:38" itemprop="dateCreated datePublished" datetime="2023-04-16T20:13:38+08:00">2023-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>581</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">个人记录：）不得不说Manjaro+KDE比隔壁Ubuntu+GNOME清爽太多了</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h1><h2 id="自动换源"><a href="#自动换源" class="headerlink" title="自动换源"></a>自动换源</h2><p><code>sudo pacman-mirrors -i -c China -m rank</code></p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>更新系统 <code>sudo pacman -Syu</code>，<br>但其实直接运行<code>yay</code>更加方便</p>
+<h1 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h1><h2 id="编译工具"><a href="#编译工具" class="headerlink" title="编译工具"></a>编译工具</h2><p><code>sudo pacman -S base-devel</code></p>
+<h2 id="AUR"><a href="#AUR" class="headerlink" title="AUR"></a>AUR</h2><p><code>sudo pacman -S yay</code></p>
+<h2 id="deb包解压"><a href="#deb包解压" class="headerlink" title="deb包解压"></a>deb包解压</h2><p><code>yay -S debtap</code></p>
+<h2 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h2><p><code>yay -S com.qq.weixin.spark</code></p>
+<p>若微信的输入出现方框，需要安装字体</p>
+<p><code>yay -S wqy-microhei</code></p>
+<p>把字体复制到Wine环境</p>
+<p><code>cp /usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc /home/用户名/.deepinwine/Deepin-WeChat/drive_c/windows/Fonts/</code></p>
+<p>微信边框在失焦时仍然显示，需要设置wine <code>winecfg</code></p>
+<p>在显示页面，去掉允许窗口管理器装饰窗口</p>
+<h2 id="英伟达驱动"><a href="#英伟达驱动" class="headerlink" title="英伟达驱动"></a>英伟达驱动</h2><p><code>sudo mhwd -a pci nonfree 0300</code> </p>
+<h2 id="HP打印机驱动"><a href="#HP打印机驱动" class="headerlink" title="HP打印机驱动"></a>HP打印机驱动</h2><p><code>yay -S hplip</code></p>
+<p>然后运行一次<code>sudo hp-plugin</code></p>
+<h1 id="交换文件Swapfile"><a href="#交换文件Swapfile" class="headerlink" title="交换文件Swapfile"></a>交换文件Swapfile</h1><p>创建Swap文件<br><code>sudo dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress</code></p>
+<p>设置权限，仅<code>root</code>用户可读写<br><code>sudo chmod 600 /swapfile</code></p>
+<p>格式化并启用Swap文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkswap /swapfile</span><br><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure>
+
+<p>在系统启动时自动装载Swap，在<code>/etc/fstab</code>添加入口<br><code>sudo bash -c &quot;echo /swapfile none swap defaults 0 0 &gt;&gt; /etc/fstab&quot;</code></p>
+<h3 id="设置Swap激进程度"><a href="#设置Swap激进程度" class="headerlink" title="设置Swap激进程度"></a>设置Swap激进程度</h3><p>在 <code>/etc/sysctl.conf</code> 中添加参数：</p>
+<p><code>vm.swappiness=10</code></p>
+<p>交换的激进程度设置在0到100，数值越高越激进</p>
+<h1 id="Anaconda和ZSH"><a href="#Anaconda和ZSH" class="headerlink" title="Anaconda和ZSH"></a>Anaconda和ZSH</h1><p>ZSH的配置文件是<code>.zshrc</code>，把在<code>.bashrc</code>中Anaconda部分复制到<code>.zshrc</code>并<code>source .zshrc</code>即可</p>
+<h1 id="开机自动挂载盘"><a href="#开机自动挂载盘" class="headerlink" title="开机自动挂载盘"></a>开机自动挂载盘</h1><h2 id="查找要挂载的硬盘"><a href="#查找要挂载的硬盘" class="headerlink" title="查找要挂载的硬盘"></a>查找要挂载的硬盘</h2><p>输入：<br><code>sudo fdisk -l</code></p>
+<p>输出，找到要挂载的盘：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Disk /dev/nvme1n1：476.94 GiB，512110190592 字节，1000215216 个扇区</span><br><span class="line">磁盘型号：SAMSUNG MZVLB512HAJQ-000H1              </span><br><span class="line">单元：扇区 / 1 * 512 = 512 </span><br><span class="line">字节扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：gpt</span><br><span class="line">磁盘标识符：D22C0D07-F374-479E-9D07-347C214E885A</span><br><span class="line"></span><br><span class="line">设备            起点       末尾       扇区   大小 类型</span><br><span class="line">/dev/nvme1n1p1  2048 1000214527 1000212480 476.9G Microsoft 基本数据</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看UUID"><a href="#查看UUID" class="headerlink" title="查看UUID"></a>查看UUID</h2><p>输入：<br><code>ls -l /dev/disk/by-uuid</code></p>
+<p>输出，找到<code>/dev/nvme1n1p1</code>对应UUID为<code>034A-9602</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">总计 0</span><br><span class="line">lrwxrwxrwx 1 root root 15  7月 2日 11:45 034A-9602 -&gt; ../../nvme1n1p1</span><br><span class="line">lrwxrwxrwx 1 root root 10  7月 2日 09:08 2f7cc8fd-cc74-4472-8b3d-e8efcb068607 -&gt; ../../sdb2</span><br><span class="line">lrwxrwxrwx 1 root root 10  7月 2日 09:08 4E21-0000 -&gt; ../../sde1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑-etc-fstab"><a href="#编辑-etc-fstab" class="headerlink" title="编辑/etc/fstab"></a>编辑<code>/etc/fstab</code></h2><p>我设定的挂载点是<code>/mnt/Cache</code>，可自行设置</p>
+<p>在最后一行添加：<br><code>UUID=034A-9602 /mnt/Cache exfat defaults 0 0</code></p>
+<p>我的硬盘文件系统是exFAT，因此设置为exfat；若为NTFS，设置为ntfs</p>
+<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%82%E8%B0%88/" rel="tag"># 杂谈</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Manjaro/" rel="tag"># Manjaro</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/Linux/" rel="prev" title="Linux">
+                  <i class="fa fa-angle-left"></i> Linux
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/%E6%9D%82%E8%B0%88/Manjaro%E4%BD%BF%E7%94%A8Swapfile%E4%BC%91%E7%9C%A0/" rel="next" title="Manjaro使用Swapfile休眠">
+                  Manjaro使用Swapfile休眠 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Toshihiko Chen</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">21k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:17</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.min.js","integrity":"sha256-9y71g5Lz/KLsHjB8uXwnkuWDtAMDSzD/HdIbqhJfTAI="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

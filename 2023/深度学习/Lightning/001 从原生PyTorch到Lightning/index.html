@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Lightning好棒好棒的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="001 从原生PyTorch到Lightning">
+<meta property="og:url" content="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/001%20%E4%BB%8E%E5%8E%9F%E7%94%9FPyTorch%E5%88%B0Lightning/index.html">
+<meta property="og:site_name" content="TSHK blog">
+<meta property="og:description" content="Lightning好棒好棒的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-28T04:54:25.000Z">
+<meta property="article:modified_time" content="2023-08-14T03:26:04.220Z">
+<meta property="article:author" content="Toshihiko Chen">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="PyTorch">
+<meta property="article:tag" content="Lightning">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/001%20%E4%BB%8E%E5%8E%9F%E7%94%9FPyTorch%E5%88%B0Lightning/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/001%20%E4%BB%8E%E5%8E%9F%E7%94%9FPyTorch%E5%88%B0Lightning/","path":"2023/深度学习/Lightning/001 从原生PyTorch到Lightning/","title":"001 从原生PyTorch到Lightning"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>001 从原生PyTorch到Lightning | TSHK blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TSHK blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFLightning"><span class="nav-number">1.</span> <span class="nav-text">什么是Lightning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="nav-number">3.</span> <span class="nav-text">快速开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%94%9FPyTorch"><span class="nav-number">3.1.</span> <span class="nav-text">原生PyTorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E5%8C%96%E4%B8%BALightning"><span class="nav-number">3.2.</span> <span class="nav-text">转化为Lightning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-Lightning%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">第一步 Lightning模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E8%AE%BE%E7%BD%AE%E5%89%8D%E9%A9%B1%E9%92%A9%E5%AD%90"><span class="nav-number">3.2.2.</span> <span class="nav-text">第二步 设置前驱钩子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E8%AE%BE%E7%BD%AE%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">3.2.3.</span> <span class="nav-text">第三步 设置优化器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5-%E6%B7%BB%E5%8A%A0%E8%AE%AD%E7%BB%83%E5%92%8C%E9%AA%8C%E8%AF%81%E9%80%BB%E8%BE%91"><span class="nav-number">3.2.4.</span> <span class="nav-text">第四步 添加训练和验证逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E7%8E%B0"><span class="nav-number">3.2.5.</span> <span class="nav-text">发现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5-%E5%88%9D%E5%A7%8B%E5%8C%96Lightning%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.2.6.</span> <span class="nav-text">第五步 初始化Lightning模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5-%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83"><span class="nav-number">3.2.7.</span> <span class="nav-text">第六步 开始训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">3.2.8.</span> <span class="nav-text">完整代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E8%B0%83%E6%95%B4Trainer%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">一些调整Trainer的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Epoch"><span class="nav-number">3.3.1.</span> <span class="nav-text">Epoch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E8%AE%BE%E5%A4%87"><span class="nav-number">3.3.2.</span> <span class="nav-text">计算设备</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Toshihiko Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/001%20%E4%BB%8E%E5%8E%9F%E7%94%9FPyTorch%E5%88%B0Lightning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Toshihiko Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TSHK blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="001 从原生PyTorch到Lightning | TSHK blog">
+      <meta itemprop="description" content="Lightning好棒好棒的">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          001 从原生PyTorch到Lightning
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-28 12:54:25" itemprop="dateCreated datePublished" datetime="2023-06-28T12:54:25+08:00">2023-06-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/" itemprop="url" rel="index"><span itemprop="name">Lightning</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">Lightning好棒好棒的</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="什么是Lightning"><a href="#什么是Lightning" class="headerlink" title="什么是Lightning"></a>什么是Lightning</h1><p>Lightning库是一个组织好的PyTorch代码库。<br>即使PyTorch本身足够简单易用，但是项目一旦庞大，代码仍然会变得凌乱复杂。</p>
+<p>Lightning库出现是为了让开发者更专注于算法逻辑的实现，并且减少工程代码的复写。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><code>pip install lightning</code></p>
+<h1 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h1><h2 id="原生PyTorch"><a href="#原生PyTorch" class="headerlink" title="原生PyTorch"></a>原生PyTorch</h2><p>以训练MNIST分类为例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader, random_split</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"></span><br><span class="line"><span class="comment"># datasets and dataloaders</span></span><br><span class="line">dataset = torchvision.datasets.MNIST(<span class="string">&#x27;.&#x27;</span>, download=<span class="literal">True</span>, transform=torchvision.transforms.ToTensor())</span><br><span class="line">train_dataset, val_dataset = random_split(dataset, [<span class="number">0.9</span>, <span class="number">0.1</span>])</span><br><span class="line">train_dataloader, val_dataloader = DataLoader(train_dataset), DataLoader(val_dataset)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- model -----</span></span><br><span class="line">model = nn.Sequential(</span><br><span class="line">    nn.Linear(<span class="number">28</span>*<span class="number">28</span>, <span class="number">128</span>), </span><br><span class="line">    nn.ReLU(), </span><br><span class="line">    nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line">)</span><br><span class="line">crtierion = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- compile -----</span></span><br><span class="line">device = <span class="string">&#x27;cuda&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span></span><br><span class="line">model.to(device)</span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">1e-4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- train -----</span></span><br><span class="line">num_epochs = <span class="number">10</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">    <span class="comment"># train loop</span></span><br><span class="line">    model.train()    <span class="comment"># 模型设置为训练模式</span></span><br><span class="line">    <span class="keyword">for</span> batch <span class="keyword">in</span> train_dataloader:</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        x, y_true = batch</span><br><span class="line">        x, y_true = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>).to(device), y_true.to(device)</span><br><span class="line">        y_pred = model(x)</span><br><span class="line">        loss = criterion(y_pred, y_true)</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># eval loop</span></span><br><span class="line">    model.<span class="built_in">eval</span>()    <span class="comment"># 模型设置为验证模式</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():    <span class="comment"># 验证时不需要计算梯度</span></span><br><span class="line">        <span class="keyword">for</span> batch <span class="keyword">in</span> val_dataloader:</span><br><span class="line">            val_loss = []</span><br><span class="line">            x, y_true = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>).to(device), y_true.to(device)</span><br><span class="line">            y_pred = model(x)</span><br><span class="line">            loss = criterion(y_pred, y_true)</span><br><span class="line">            val_loss.append(loss.item())</span><br><span class="line">        val_loss = torch.mean(torch.tensor(val_loss))   </span><br></pre></td></tr></table></figure>
+
+<p>尽管代码十分简单，但是算法逻辑代码和工程代码穿插一起显得十分丑陋，让人无法专注于算法逻辑上；<br>若日后工程量逐步增大，这种代码的可维护程度是灾难性的</p>
+<h2 id="转化为Lightning"><a href="#转化为Lightning" class="headerlink" title="转化为Lightning"></a>转化为Lightning</h2><h3 id="第一步-Lightning模型"><a href="#第一步-Lightning模型" class="headerlink" title="第一步 Lightning模型"></a>第一步 Lightning模型</h3><p>把原生PyTorch中的model和criterion放入到<code>LightningModule</code>的<code>__init__</code>方法中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LitModel</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">28</span>*<span class="number">28</span>, <span class="number">128</span>), </span><br><span class="line">            nn.ReLU(), </span><br><span class="line">            nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line">        )</span><br><span class="line">        self.criterion = nn.CrossEntropyLoss()</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二步-设置前驱钩子"><a href="#第二步-设置前驱钩子" class="headerlink" title="第二步 设置前驱钩子"></a>第二步 设置前驱钩子</h3><p>设置<code>forward</code>方法，可以像PyTorch模型模型一样使用<code>__call__</code>方法得到结果：<code>outputs=model(inputs)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LitModel</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">28</span>*<span class="number">28</span>, <span class="number">128</span>), </span><br><span class="line">            nn.ReLU(), </span><br><span class="line">            nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line">        )</span><br><span class="line">        self.criterion = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ========== Add ==========</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.model(x)</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三步-设置优化器"><a href="#第三步-设置优化器" class="headerlink" title="第三步 设置优化器"></a>第三步 设置优化器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LitModel</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">28</span>*<span class="number">28</span>, <span class="number">128</span>), </span><br><span class="line">            nn.ReLU(), </span><br><span class="line">            nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line">        )</span><br><span class="line">        self.criterion = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.model(x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ========== Add ==========</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_optimizers</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> torch.optim.SGD(self.model.parameters(), lr=<span class="number">1e-4</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="第四步-添加训练和验证逻辑"><a href="#第四步-添加训练和验证逻辑" class="headerlink" title="第四步 添加训练和验证逻辑"></a>第四步 添加训练和验证逻辑</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LitModel</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">28</span>*<span class="number">28</span>, <span class="number">128</span>), </span><br><span class="line">            nn.ReLU(), </span><br><span class="line">            nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line">        )</span><br><span class="line">        self.criterion = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.model(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_optimizers</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> torch.optim.SGD(self.model.parameters(), lr=<span class="number">1e-4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ========== Add ==========</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">training_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        x, y_true = batch</span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        y_pred = self.model(x)</span><br><span class="line">        loss = self.criterion(y_pred, y_true)</span><br><span class="line">        self.log(<span class="string">&#x27;train_loss&#x27;</span>, loss)    <span class="comment"># 使用logger（Tensorboad或者CSV）记录指标</span></span><br><span class="line">        <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">valitdation_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        x, y_true = batch</span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        y_pred = model(x)</span><br><span class="line">        loss = criterion(y_pred, y_true)</span><br><span class="line">        self.log(<span class="string">&#x27;val_loss&#x27;</span>, loss)</span><br></pre></td></tr></table></figure>
+
+<h3 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h3><p>在Lightning中，你不需要处理反向传播（<code>loss.backward()</code>）和处理优化器（<code>optimizer.zero_grad()</code>和<code>optmizer.step()</code>）。<br>当然，也可以手动设置这些方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LitModel</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">28</span>*<span class="number">28</span>, <span class="number">128</span>), </span><br><span class="line">            nn.ReLU(), </span><br><span class="line">            nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line">        )</span><br><span class="line">        self.criterion = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.model(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_optimizers</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> torch.optim.SGD(self.model.parameters(), lr=<span class="number">1e-4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">training_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        x, y_true = batch</span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        y_pred = self.model(x)</span><br><span class="line">        loss = self.criterion(y_pred, y_true)</span><br><span class="line">        self.log(<span class="string">&#x27;train_loss&#x27;</span>, loss)    <span class="comment"># 使用logger（Tensorboad或者CSV）记录指标</span></span><br><span class="line">        <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">valitdation_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        x, y_true = batch</span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        y_pred = model(x)</span><br><span class="line">        loss = criterion(y_pred, y_true)</span><br><span class="line">        self.log(<span class="string">&#x27;val_loss&#x27;</span>, loss)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ============ NOT NECESSARY ============</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">backward</span>(<span class="params">self, trainer, loss, optimizer, optimizer_idx</span>):</span><br><span class="line">        loss.backward()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">optimizer_step</span>(<span class="params">self, epoch, batch_idx, optimizer, optimizer_idx</span>):</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">optimizer_zero_grad</span>(<span class="params">self, epoch, batch_idx, optimizer</span>):</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">    <span class="comment"># ============ NOT NECESSARY ============</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第五步-初始化Lightning模型"><a href="#第五步-初始化Lightning模型" class="headerlink" title="第五步 初始化Lightning模型"></a>第五步 初始化Lightning模型</h3><p>此时Lightning模型已经包含完全的PyTorch训练和验证逻辑，而其他的工程问题则交给<code>Trainer</code>进行管理。</p>
+<p>把原生PyTorch代码中关于模型，优化器和训练逻辑的代码去掉，替换为对Lightning模型和trainer的初始化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader, random_split</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="comment"># datasets and dataloaders</span></span><br><span class="line">dataset = torchvision.datasets.MNIST(<span class="string">&#x27;.&#x27;</span>, download=<span class="literal">True</span>, transform=torchvision.transforms.ToTensor())</span><br><span class="line">train_dataset, val_dataset = random_split(dataset, [<span class="number">0.9</span>, <span class="number">0.1</span>])</span><br><span class="line">train_dataloader, val_dataloader = DataLoader(train_dataset), DataLoader(val_dataset)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lightning</span></span><br><span class="line">model = LitModel()</span><br><span class="line">trainer = pl.Trainer()</span><br></pre></td></tr></table></figure>
+
+<h3 id="第六步-开始训练"><a href="#第六步-开始训练" class="headerlink" title="第六步 开始训练"></a>第六步 开始训练</h3><p>仅需一行代码<code>trainer.fit()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="comment"># datasets and dataloaders</span></span><br><span class="line">dataset = torchvision.datasets.MNIST(<span class="string">&#x27;.&#x27;</span>, download=<span class="literal">True</span>, transform=torchvision.transforms.ToTensor())</span><br><span class="line">train_dataset, val_dataset = random_split(dataset, [<span class="number">0.9</span>, <span class="number">0.1</span>])</span><br><span class="line">train_dataloader, val_dataloader = DataLoader(train_dataset), DataLoader(val_dataset)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lightning</span></span><br><span class="line">model = LitModel()</span><br><span class="line">trainer = pl.Trainer()</span><br><span class="line">trainer.fit(model, train_dataloader, val_dataloader)</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader, random_split</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> lightning <span class="keyword">as</span> pl</span><br><span class="line"></span><br><span class="line"><span class="comment"># datasets and dataloaders</span></span><br><span class="line">dataset = torchvision.datasets.MNIST(<span class="string">&#x27;.&#x27;</span>, download=<span class="literal">True</span>, transform=torchvision.transforms.ToTensor())</span><br><span class="line">train_dataset, val_dataset = random_split(dataset, [<span class="number">0.9</span>, <span class="number">0.1</span>])</span><br><span class="line">train_dataloader, val_dataloader = DataLoader(train_dataset), DataLoader(val_dataset)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lightning module</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LitModel</span>(pl.LightningModule):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">28</span>*<span class="number">28</span>, <span class="number">128</span>), </span><br><span class="line">            nn.ReLU(), </span><br><span class="line">            nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line">        )</span><br><span class="line">        self.criterion = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.model(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">configure_optimizers</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> torch.optim.SGD(self.model.parameters(), lr=<span class="number">1e-4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">training_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        x, y_true = batch</span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        y_pred = self.model(x)</span><br><span class="line">        loss = self.criterion(y_pred, y_true)</span><br><span class="line">        self.log(<span class="string">&#x27;train_loss&#x27;</span>, loss)    <span class="comment"># 使用logger（Tensorboad或者CSV）记录指标</span></span><br><span class="line">        <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">valitdation_step</span>(<span class="params">self, batch, batch_idx</span>):</span><br><span class="line">        x, y_true = batch</span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        y_pred = model(x)</span><br><span class="line">        loss = criterion(y_pred, y_true)</span><br><span class="line">        self.log(<span class="string">&#x27;val_loss&#x27;</span>, loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lightning</span></span><br><span class="line">model = LitModel()</span><br><span class="line">trainer = pl.Trainer()</span><br><span class="line">trainer.fit(model, train_dataloader, val_dataloader)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="一些调整Trainer的参数"><a href="#一些调整Trainer的参数" class="headerlink" title="一些调整Trainer的参数"></a>一些调整<code>Trainer</code>的参数</h2><p><code>Trainer</code>的作用是控制<code>LightningModule</code>已设置好的逻辑进行，这意味着你不用再去写for循环控制训练和验证或者设置变量去记录指标，<br>它甚至可以自动把模型和输入数据放入到指定计算设备中，并且在验证模型时自动禁止计算梯度并切换模型到验证模式。</p>
+<h3 id="Epoch"><a href="#Epoch" class="headerlink" title="Epoch"></a>Epoch</h3><p>训练次数（Epoch）是DL里很关键的一个参数，<code>Trainer</code>里包含两个关于Epoch的参数<code>max_epochs</code>和<code>min_epochs</code></p>
+<p><code>max_epochs</code>是指一旦到达指定次数，则终止训练；<code>min_epochs</code>是指到达指定次数之前，训练是不会停止的。<br>显然<code>max_epochs</code>更符合原生PyTorch中<code>num_epochs</code>参数的意思，而<code>min_epochs</code>更常用于早停策略训练中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># default used by the Trainer</span></span><br><span class="line">trainer = Trainer(max_epochs=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># default used by the Trainer</span></span><br><span class="line">trainer = Trainer(min_epochs=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="计算设备"><a href="#计算设备" class="headerlink" title="计算设备"></a>计算设备</h3><p>Lightning支持CPU，GPU，TPU，IPU设备，并且支持分布式策略</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CPU accelerator</span></span><br><span class="line">trainer = Trainer(accelerator=<span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"><span class="comment"># Training with GPU Accelerator using 2 GPUs</span></span><br><span class="line">trainer = Trainer(devices=<span class="number">2</span>, accelerator=<span class="string">&quot;gpu&quot;</span>)</span><br><span class="line"><span class="comment"># Training with TPU Accelerator using 8 tpu cores</span></span><br><span class="line">trainer = Trainer(devices=<span class="number">8</span>, accelerator=<span class="string">&quot;tpu&quot;</span>)</span><br><span class="line"><span class="comment"># Training with GPU Accelerator using the DistributedDataParallel strategy</span></span><br><span class="line">trainer = Trainer(devices=<span class="number">4</span>, accelerator=<span class="string">&quot;gpu&quot;</span>, strategy=<span class="string">&quot;ddp&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在Lightning 2.0后，<code>Trainer</code>支持自动设置加速设备</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trainer = Trainer(accelerator=<span class="string">&quot;auto&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/PyTorch/" rel="tag"># PyTorch</a>
+              <a href="/tags/Lightning/" rel="tag"># Lightning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/%E6%9D%82%E8%B0%88/Manjaro%E4%BD%BF%E7%94%A8Swapfile%E4%BC%91%E7%9C%A0/" rel="prev" title="Manjaro使用Swapfile休眠">
+                  <i class="fa fa-angle-left"></i> Manjaro使用Swapfile休眠
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Lightning/002%20%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B9%9F%E8%A6%81Lightning/" rel="next" title="002 数据集也要Lightning">
+                  002 数据集也要Lightning <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Toshihiko Chen</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">21k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:17</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.min.js","integrity":"sha256-9y71g5Lz/KLsHjB8uXwnkuWDtAMDSzD/HdIbqhJfTAI="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
